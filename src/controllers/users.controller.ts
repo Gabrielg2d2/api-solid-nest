@@ -1,7 +1,6 @@
 import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
-  IDataGetProfileRequest,
   UsersDomain,
 } from '@/domain/users/main';
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
@@ -29,13 +28,10 @@ export class UsersController {
   }
 
   @Get('/profile/:userId')
-  async getProfile(
-    @Param('userId') params: IDataGetProfileRequest,
-    @Res() reply: Response,
-  ) {
+  async getProfile(@Param('userId') userId: string, @Res() reply: Response) {
     const domain = new UsersDomain();
     const result = await domain.getProfile({
-      userId: params.userId,
+      userId: userId,
     });
 
     return reply.status(result.statusCode).send(result);
