@@ -4,16 +4,17 @@ import {
   IDataGetProfileRequest,
   UsersDomain,
 } from '@/domain/users/main';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 
 @Controller('/users')
 export class UsersController {
   @Post('/create')
-  async create(@Body() body: IDataCreateUserRequest) {
+  async create(@Body() body: IDataCreateUserRequest, @Res() reply: Response) {
     const domain = new UsersDomain();
     const result = await domain.createUser(body);
 
-    return result;
+    return reply.status(result.statusCode).send(result);
   }
 
   @Post('/session')
