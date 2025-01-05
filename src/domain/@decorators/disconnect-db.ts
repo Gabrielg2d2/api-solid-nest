@@ -3,18 +3,14 @@
 
 import { env } from '@/env';
 
-export function DisconnectDb() {
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor,
-  ) {
+export class Disconnect {
+  static db(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 
     descriptor.value = async function (...args: any[]) {
       // TODO: remove this console.log
       if (env.NODE_ENV === 'development') {
-        console.log(`Calling ${propertyKey}`);
+        console.log(`Calling disconnect to ${propertyKey}`);
       }
       try {
         return await originalMethod.apply(this, args);
@@ -32,5 +28,5 @@ export function DisconnectDb() {
     };
 
     return descriptor;
-  };
+  }
 }
