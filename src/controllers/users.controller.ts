@@ -18,20 +18,26 @@ export class UsersController {
   }
 
   @Post('/session')
-  async authenticate(@Body() body: IDataAuthenticateRequest) {
+  async authenticate(
+    @Body() body: IDataAuthenticateRequest,
+    @Res() reply: Response,
+  ) {
     const domain = new UsersDomain();
     const result = await domain.authenticateUser(body);
 
-    return result;
+    return reply.status(result.statusCode).send(result);
   }
 
   @Get('/profile/:userId')
-  async getProfile(@Param('userId') params: IDataGetProfileRequest) {
+  async getProfile(
+    @Param('userId') params: IDataGetProfileRequest,
+    @Res() reply: Response,
+  ) {
     const domain = new UsersDomain();
     const result = await domain.getProfile({
       userId: params.userId,
     });
 
-    return result;
+    return reply.status(result.statusCode).send(result);
   }
 }
