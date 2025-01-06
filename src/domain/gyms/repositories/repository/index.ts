@@ -1,14 +1,13 @@
-import { AdapterPrisma } from '@/domain/@adapters/repository/prisma';
-import { Disconnect } from '@/domain/@decorators/disconnect-db';
-import { IGymGlobal } from '@/domain/@global/types/gym';
-import { IDataRequest, IRepositoryGyms } from '../interface';
+import { AdapterPrisma } from "@/domain/@adapters/repository/prisma";
+
+import { IGymGlobal } from "@/domain/@global/types/gym";
+import { IDataRequest, IRepositoryGyms } from "../interface";
 
 export type { IDataRequest, IGymGlobal };
 
 export class RepositoryGyms implements IRepositoryGyms {
   constructor(private readonly db = new AdapterPrisma()) {}
 
-  @Disconnect.db
   async create(data: IDataRequest) {
     const newGym = await this.db.prisma.gym.create({
       data: {
@@ -27,7 +26,6 @@ export class RepositoryGyms implements IRepositoryGyms {
     };
   }
 
-  @Disconnect.db
   async findById(id: string) {
     const gym = await this.db.prisma.gym.findUnique({
       where: { id },
