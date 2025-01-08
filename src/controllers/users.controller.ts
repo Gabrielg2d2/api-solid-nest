@@ -23,16 +23,10 @@ export function createDto<T extends object>(type: T): any {
   }
 
   Object.keys(type).forEach((key) => {
-    Object.defineProperty(DynamicDto.prototype, key, {
-      get: function () {
-        return this[`_${key}`];
-      },
-      set: function (value) {
-        this[`_${key}`] = value;
-      },
-      enumerable: true,
-      configurable: true,
-    });
+    ApiProperty({ example: type[key] })(DynamicDto.prototype, key);
+  });
+
+  Object.keys(type).forEach((key) => {
     ApiProperty({ type: String })(DynamicDto.prototype, key);
   });
 
@@ -40,9 +34,9 @@ export function createDto<T extends object>(type: T): any {
 }
 
 const CreateUserDto = createDto<IDataCreateUserRequest>({
-  name: 'defaultUsername',
-  email: 'defaultEmail',
-  password: 'defaultPassword',
+  name: 'Name Test',
+  email: 'test@gmail.com',
+  password: '123456',
 });
 
 @ApiTags('users')
