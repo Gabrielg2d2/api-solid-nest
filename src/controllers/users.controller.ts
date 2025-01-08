@@ -13,7 +13,7 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 
-export function createDto<T>(type: T): any {
+export function createDto<T extends object>(type: T): any {
   class DynamicDto {
     constructor() {
       Object.keys(type).forEach((key) => {
@@ -23,7 +23,17 @@ export function createDto<T>(type: T): any {
   }
 
   Object.keys(type).forEach((key) => {
-    ApiProperty()(DynamicDto.prototype, key);
+    Object.defineProperty(DynamicDto.prototype, key, {
+      get: function () {
+        return this[`_${key}`];
+      },
+      set: function (value) {
+        this[`_${key}`] = value;
+      },
+      enumerable: true,
+      configurable: true,
+    });
+    ApiProperty({ type: String })(DynamicDto.prototype, key);
   });
 
   return DynamicDto;
