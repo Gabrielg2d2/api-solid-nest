@@ -14,8 +14,7 @@ class makeSutCreateUserUseCase {
       return new CreateUserUseCase(repositoryTest);
     }
 
-    const repositoryTest =
-      new RepositoryUserTest() as unknown as RepositoryUsers;
+    const repositoryTest = new RepositoryUserTest();
     return new CreateUserUseCase(repositoryTest);
   }
 }

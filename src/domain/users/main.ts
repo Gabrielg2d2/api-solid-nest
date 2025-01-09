@@ -1,3 +1,4 @@
+import { IRepositoryUsers } from './repositories/interface';
 import {
   AuthenticateUserUseCase,
   IDataRequest as IDataAuthenticateRequest,
@@ -29,8 +30,10 @@ interface IUsersDomain {
 }
 
 export class UsersDomain implements IUsersDomain {
+  constructor(private readonly repository: IRepositoryUsers) {}
+
   async createUser(body: IDataCreateUserRequest) {
-    return await new CreateUserUseCase().execute(body);
+    return await new CreateUserUseCase(this.repository).execute(body);
   }
 
   async authenticateUser(body: IDataAuthenticateRequest) {

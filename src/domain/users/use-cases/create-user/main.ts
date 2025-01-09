@@ -1,6 +1,6 @@
 import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
 import { IUserGlobal } from '@/domain/@global/types/user';
-import { RepositoryUsers } from '../../repositories/repository';
+import { IRepositoryUsers } from '../../repositories/interface';
 import { ServiceCreatePasswordHash } from '../../services/create-password-hash';
 import { ServiceValidationUserAlreadyExists } from '../../services/validating-user-alredy-exists';
 import { ServiceValidationCreateUser } from '../../services/validation-user-creation';
@@ -28,7 +28,7 @@ interface ICreateUserUseCase {
 }
 
 export class CreateUserUseCase implements ICreateUserUseCase {
-  constructor(private readonly repository = new RepositoryUsers()) {}
+  constructor(private readonly repository: IRepositoryUsers) {}
 
   async execute(body: IDataRequest) {
     try {
