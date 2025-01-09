@@ -39,6 +39,11 @@ const CreateUserDto = createDto<IDataCreateUserRequest>({
   password: '123456',
 });
 
+const AuthenticateUserDto = createDto<IDataAuthenticateRequest>({
+  email: 'test@gmail.com',
+  password: '123456',
+});
+
 @ApiTags('users')
 @Controller('/users')
 export class UsersController {
@@ -60,11 +65,12 @@ export class UsersController {
 
   @Post('/session')
   @ApiOperation({ summary: 'Authenticate user' })
+  @ApiBody({ type: AuthenticateUserDto })
   @ApiResponse({
     status: 200,
-    description: 'The user has been successfully authenticated.',
+    description: 'User authenticated successfully',
   })
-  @ApiResponse({ status: 401, description: 'Unauthorized.' })
+  @ApiResponse({ status: 400, description: 'Credentials are invalid.' })
   async authenticate(
     @Body() body: IDataAuthenticateRequest,
     @Res() reply: Response,
