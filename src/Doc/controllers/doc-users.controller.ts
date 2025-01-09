@@ -18,10 +18,19 @@ export class DocUsersController extends BaseUsersController {
   @Get('/clear-all-repository-in-memory')
   async clear(@Res() reply: Response) {
     const repository = this.repository;
-    repository.clearAllUsers();
+    await repository.clearAllUsers();
+
     return reply.status(200).send({
       message: 'All users removed',
     });
+  }
+
+  @Get('/fetch-all-repository-in-memory')
+  async fetch(@Res() reply: Response) {
+    const repository = this.repository;
+    const result = await repository.getAllUsers();
+
+    return reply.status(200).send(result);
   }
   //TODO: APENAS DOCUMENTAÇÃO - FIM
 }

@@ -15,11 +15,12 @@ export class RepositoryUserTest implements IRepositoryUsers {
     },
   ];
 
-  // TODO: APENAS SWAGGER
+  // TODO: DOC APENAS SWAGGER
   async clearAllUsers() {
     this.users = [];
   }
 
+  // TODO: DOC APENAS SWAGGER
   async getAllUsers() {
     try {
       return this.users;

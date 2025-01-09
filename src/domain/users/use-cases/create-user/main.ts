@@ -38,6 +38,8 @@ export class CreateUserUseCase implements ICreateUserUseCase {
 
       const user = await this.repository.getUserByEmail(email);
 
+      console.log('user => ', user);
+
       await new ServiceValidationUserAlreadyExists().execute(user);
 
       const password_hash = await new ServiceCreatePasswordHash().execute(
