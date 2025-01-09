@@ -9,7 +9,7 @@ function getNodeEnv() {
   switch (key) {
     case 'test':
       return {
-        title: 'MyGym API - TEST',
+        title: 'MyGym API - Test In Memory',
         name: 'test',
         port: 4000,
         description: 'The MyGym API documentation, for testing purposes',
