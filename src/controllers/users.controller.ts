@@ -32,12 +32,11 @@ export function generateDto<T extends object>(type: T, dtoName: string) {
   return DynamicDto;
 }
 
-// Usage examples:
-const CreateUserDto = generateDto(
+const CreateUserDto = generateDto<IDataCreateUserRequest>(
   { name: 'Name Test', email: 'test@gmail.com', password: '123123' },
   'CreateUserDto',
 );
-const AuthenticateUserDto = generateDto(
+const AuthenticateUserDto = generateDto<IDataAuthenticateRequest>(
   { email: 'test@gmail.com', password: '123456' },
   'AuthenticateUserDto',
 );
