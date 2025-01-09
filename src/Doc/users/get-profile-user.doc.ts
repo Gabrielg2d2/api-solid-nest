@@ -6,7 +6,7 @@ export function ProfileUserDocs() {
     ApiOperation({ summary: 'Get user profile' }),
     ApiResponse({
       status: 200,
-      description: 'The user profile has been successfully retrieved.',
+      description: 'User found successfully',
     }),
     ApiResponse({ status: 404, description: 'User not found.' }),
   );
