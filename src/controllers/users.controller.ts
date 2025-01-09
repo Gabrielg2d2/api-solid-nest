@@ -13,7 +13,7 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 
-export function createDto<T extends object>(type: T): any {
+export function createDto<T extends object>(type: T) {
   class DynamicDto {
     constructor() {
       Object.keys(type).forEach((key) => {
