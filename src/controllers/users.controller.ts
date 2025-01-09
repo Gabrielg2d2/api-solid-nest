@@ -13,7 +13,7 @@ import {
 } from '@nestjs/swagger';
 import { Response } from 'express';
 
-export function generateDto<T extends object>(type: T, dtoName: string) {
+function generateDto<T extends object>(type: T, dtoName: string) {
   const DynamicDto = class {
     constructor() {
       Object.keys(type).forEach((key) => {
@@ -25,17 +25,29 @@ export function generateDto<T extends object>(type: T, dtoName: string) {
   Object.defineProperty(DynamicDto, 'name', { value: dtoName });
 
   Object.keys(type).forEach((key) => {
-    ApiProperty({ example: type[key] })(DynamicDto.prototype, key);
-    ApiProperty({ type: String })(DynamicDto.prototype, key);
+    const propertyType =
+      typeof type[key] === 'object' && type[key] !== null
+        ? generateDto(type[key], `${dtoName} => ${key}`)
+        : type[key].constructor;
+
+    ApiProperty({
+      example: type[key],
+      type: propertyType,
+    })(DynamicDto.prototype, key);
   });
 
   return DynamicDto;
 }
 
 const CreateUserDto = generateDto<IDataCreateUserRequest>(
-  { name: 'Name Test', email: 'test@gmail.com', password: '123123' },
+  {
+    name: 'Name Test',
+    email: 'test@gmail.com',
+    password: '123456',
+  },
   'CreateUserDto',
 );
+
 const AuthenticateUserDto = generateDto<IDataAuthenticateRequest>(
   { email: 'test@gmail.com', password: '123456' },
   'AuthenticateUserDto',
