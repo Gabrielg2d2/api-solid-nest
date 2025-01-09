@@ -8,5 +8,6 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=apimygym
+      - POSTGRESQL_PORT_NUMBER=5433
     ports:
-      - '5433:5432'
+      - '5433:5433'

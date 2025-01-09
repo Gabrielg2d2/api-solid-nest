@@ -1,6 +1,6 @@
-import { AdapterPrisma } from "@/domain/@adapters/repository/prisma";
+import { AdapterPrisma } from '@/domain/@adapters/repository/prisma';
 
-import { ICheckIn, IDataRequest, IRepositoryCheckIn } from "../interface";
+import { ICheckIn, IDataRequest, IRepositoryCheckIn } from '../interface';
 
 export type { ICheckIn, IDataRequest };
 

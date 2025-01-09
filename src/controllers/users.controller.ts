@@ -50,6 +50,7 @@ export class UsersController {
     description: 'The user has been successfully created.',
   })
   @ApiResponse({ status: 400, description: 'Bad Request.' })
+  @ApiResponse({ status: 409, description: 'User already exists' })
   async create(@Body() body: IDataCreateUserRequest, @Res() reply: Response) {
     const domain = new UsersDomain();
     const result = await domain.createUser(body);
