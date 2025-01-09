@@ -1,5 +1,5 @@
-import { AuthenticateUserDocs } from '@/Doc/users/authenticate-user-doc';
-import { CreateUserDocs } from '@/Doc/users/create-user-doc';
+import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
+import { CreateUserDocs } from '@/doc/users/create-user.doc';
 import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
