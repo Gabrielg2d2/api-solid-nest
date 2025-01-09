@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { IUserGlobal } from '@/domain/@global/types/user';
+import { randomUUID } from 'node:crypto';
 import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 
 export class RepositoryUserTest implements IRepositoryUsers {
@@ -14,17 +15,9 @@ export class RepositoryUserTest implements IRepositoryUsers {
     },
   ];
 
-  async clearUsers() {
-    this.users = [
-      {
-        id: '123123123',
-        name: 'Test User',
-        email: 'test@gmail.com',
-        password_hash:
-          '$2a$06$NKPokWEEGykqDgrEqVnxge5q8xhKnCI7UfayPjdHZHJnovITMZE1y', // 123456
-        created_at: new Date(),
-      },
-    ];
+  // TODO: APENAS SWAGGER
+  async clearAllUsers() {
+    this.users = [];
   }
 
   async getAllUsers() {
@@ -64,7 +57,7 @@ export class RepositoryUserTest implements IRepositoryUsers {
   async createUser(data: IRequestCreateUser) {
     try {
       const user: IUserGlobal = {
-        id: new Date().getTime().toString(),
+        id: randomUUID(),
         name: data.name,
         email: data.email,
         password_hash: data.password,

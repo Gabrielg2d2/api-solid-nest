@@ -21,6 +21,17 @@ export class UsersController {
       : new RepositoryUsers();
   private domain = new UsersDomain(this.repository);
 
+  // TODO: APENAS DOCUMENTAÇÃO - INICIO
+  @Get('/clear-all-swagger')
+  async clear(@Res() reply: Response) {
+    const repository = this.repository as RepositoryUserTest;
+    repository.clearAllUsers();
+    return reply.status(200).send({
+      message: 'All users removed',
+    });
+  }
+  //TODO: APENAS DOCUMENTAÇÃO - FIM
+
   @Post('/create')
   @CreateUserDocs()
   async create(@Body() body: IDataCreateUserRequest, @Res() reply: Response) {
