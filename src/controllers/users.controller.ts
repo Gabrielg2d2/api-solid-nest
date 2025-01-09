@@ -1,12 +1,13 @@
 import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
 import { CreateUserDocs } from '@/doc/users/create-user.doc';
+import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
 import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
   UsersDomain,
 } from '@/domain/users/main';
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 
 @ApiTags('users')
@@ -34,12 +35,7 @@ export class UsersController {
   }
 
   @Get('/profile/:userId')
-  @ApiOperation({ summary: 'Get user profile' })
-  @ApiResponse({
-    status: 200,
-    description: 'The user profile has been successfully retrieved.',
-  })
-  @ApiResponse({ status: 404, description: 'User not found.' })
+  @ProfileUserDocs()
   async getProfile(@Param('userId') userId: string, @Res() reply: Response) {
     const domain = new UsersDomain();
     const result = await domain.getProfile({
