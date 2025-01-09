@@ -1,6 +1,6 @@
 import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
 import { IUserGlobal } from '@/domain/@global/types/user';
-import { RepositoryUsers } from '../../repositories/repository';
+import { IRepositoryUsers } from '../../repositories/interface';
 import { ServiceUserValidation } from '../../services/user-validation';
 import { ErrorsGetProfile } from './returns/errors';
 import { SuccessGetProfile } from './returns/success';
@@ -19,7 +19,7 @@ interface IGetProfileUseCase {
   execute(data: IDataRequest): IReturnDefaultGetProfile;
 }
 export class GetProfileUseCase implements IGetProfileUseCase {
-  constructor(private readonly repository = new RepositoryUsers()) {}
+  constructor(private readonly repository: IRepositoryUsers) {}
 
   async execute({ userId }: IDataRequest) {
     try {

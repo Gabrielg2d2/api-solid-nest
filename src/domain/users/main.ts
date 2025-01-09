@@ -37,10 +37,10 @@ export class UsersDomain implements IUsersDomain {
   }
 
   async authenticateUser(body: IDataAuthenticateRequest) {
-    return await new AuthenticateUserUseCase().execute(body);
+    return await new AuthenticateUserUseCase(this.repository).execute(body);
   }
 
   async getProfile(body: IDataGetProfileRequest) {
-    return await new GetProfileUseCase().execute(body);
+    return await new GetProfileUseCase(this.repository).execute(body);
   }
 }

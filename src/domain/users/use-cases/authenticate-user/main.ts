@@ -2,7 +2,7 @@ import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-defaul
 import { IUserGlobal } from '@/domain/@global/types/user';
 import { ServiceValidatingAuthenticatedUser } from '@/domain/users/services/validatiing-authenticated-user';
 import { ServiceValidationEmailPassword } from '@/domain/users/services/validating-email-password';
-import { RepositoryUsers } from '../../repositories/repository';
+import { IRepositoryUsers } from '../../repositories/interface';
 import { ErrorsAuthenticateUser } from './returns/errors';
 import { SuccessAuthenticateUser } from './returns/success';
 
@@ -27,7 +27,7 @@ interface IAuthenticateUserUseCase {
   execute(body: IDataRequest): IReturnAuthenticateUser;
 }
 export class AuthenticateUserUseCase implements IAuthenticateUserUseCase {
-  constructor(private readonly repository = new RepositoryUsers()) {}
+  constructor(private readonly repository: IRepositoryUsers) {}
 
   async execute(body: IDataRequest) {
     try {
