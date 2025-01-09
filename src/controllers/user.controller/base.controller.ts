@@ -6,31 +6,11 @@ import {
   IDataCreateUserRequest,
   UsersDomain,
 } from '@/domain/users/main';
-import { RepositoryUsers } from '@/domain/users/repositories/repository';
-import { RepositoryUserTest } from '@/domain/users/repositories/repository-test';
-import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { Body, Get, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
-@ApiTags('users')
-@Controller('/users')
-export class UsersController {
-  private repository =
-    process.env.NODE_ENV === 'test'
-      ? new RepositoryUserTest()
-      : new RepositoryUsers();
-  private domain = new UsersDomain(this.repository);
-
-  // TODO: APENAS DOCUMENTAÇÃO - INICIO
-  @Get('/swagger-clear-all-repository-in-memory')
-  async clear(@Res() reply: Response) {
-    const repository = this.repository as RepositoryUserTest;
-    repository.clearAllUsers();
-    return reply.status(200).send({
-      message: 'All users removed',
-    });
-  }
-  //TODO: APENAS DOCUMENTAÇÃO - FIM
+export class BaseUsersController {
+  protected domain!: UsersDomain;
 
   @Post('/create')
   @CreateUserDocs()

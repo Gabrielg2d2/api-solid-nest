@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { DocModule } from './doc/modules';
 
 function getNodeEnv() {
   const key = process.env.NODE_ENV;
@@ -31,8 +32,10 @@ function getNodeEnv() {
 }
 
 async function bootstrap() {
-  const { title, port, description } = getNodeEnv();
-  const app = await NestFactory.create(AppModule);
+  const { title, port, description, name } = getNodeEnv();
+  // const app = await NestFactory.create(AppModule);
+  const module = name === 'test' ? DocModule : AppModule;
+  const app = await NestFactory.create(module);
 
   const config = new DocumentBuilder()
     .setTitle(title)
