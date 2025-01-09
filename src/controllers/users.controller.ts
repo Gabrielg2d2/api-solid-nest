@@ -22,7 +22,7 @@ export class UsersController {
   private domain = new UsersDomain(this.repository);
 
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
-  @Get('/clear-all-swagger')
+  @Get('/swagger-clear-all-repository-in-memory')
   async clear(@Res() reply: Response) {
     const repository = this.repository as RepositoryUserTest;
     repository.clearAllUsers();
