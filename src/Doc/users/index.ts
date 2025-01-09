@@ -2,9 +2,9 @@ import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
 } from '@/domain/users/main';
-import { useGenerateDtoDoc } from '../functions/generateDtoDoc';
+import { useGenerateDoc } from '../functions/generateDtoDoc';
 
-export const CreateUserDto = useGenerateDtoDoc<IDataCreateUserRequest>(
+export const CreateUserDto = useGenerateDoc<IDataCreateUserRequest>(
   {
     name: 'Name Test',
     email: 'test@gmail.com',
@@ -13,7 +13,7 @@ export const CreateUserDto = useGenerateDtoDoc<IDataCreateUserRequest>(
   'CreateUserDto',
 );
 
-export const AuthenticateUserDto = useGenerateDtoDoc<IDataAuthenticateRequest>(
+export const AuthenticateUserDto = useGenerateDoc<IDataAuthenticateRequest>(
   { email: 'test@gmail.com', password: '123456' },
   'AuthenticateUserDto',
 );

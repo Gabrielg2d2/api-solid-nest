@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export function useGenerateDtoDoc<T extends object>(type: T, dtoName: string) {
+export function useGenerateDoc<T extends object>(type: T, dtoName: string) {
   const DynamicDto = class {
     constructor() {
       Object.keys(type).forEach((key) => {
@@ -14,7 +14,7 @@ export function useGenerateDtoDoc<T extends object>(type: T, dtoName: string) {
   Object.keys(type).forEach((key) => {
     const propertyType =
       typeof type[key] === 'object' && type[key] !== null
-        ? useGenerateDtoDoc(type[key], `${dtoName} => ${key}`)
+        ? useGenerateDoc(type[key], `${dtoName} => ${key}`)
         : type[key].constructor;
 
     ApiProperty({
