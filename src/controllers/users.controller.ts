@@ -1,25 +1,19 @@
-import { AuthenticateUserDto, CreateUserDto } from '@/Doc/users';
+import { AuthenticateUserDocs } from '@/Doc/users/authenticate-user-doc';
+import { CreateUserDocs } from '@/Doc/users/create-user-doc';
 import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
   UsersDomain,
 } from '@/domain/users/main';
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 
 @ApiTags('users')
 @Controller('/users')
 export class UsersController {
   @Post('/create')
-  @ApiOperation({ summary: 'Create user' })
-  @ApiBody({ type: CreateUserDto })
-  @ApiResponse({
-    status: 201,
-    description: 'The user has been successfully created.',
-  })
-  @ApiResponse({ status: 400, description: 'Bad Request.' })
-  @ApiResponse({ status: 409, description: 'User already exists' })
+  @CreateUserDocs()
   async create(@Body() body: IDataCreateUserRequest, @Res() reply: Response) {
     const domain = new UsersDomain();
     const result = await domain.createUser(body);
@@ -28,13 +22,7 @@ export class UsersController {
   }
 
   @Post('/session')
-  @ApiOperation({ summary: 'Authenticate user' })
-  @ApiBody({ type: AuthenticateUserDto })
-  @ApiResponse({
-    status: 200,
-    description: 'User authenticated successfully',
-  })
-  @ApiResponse({ status: 400, description: 'Credentials are invalid.' })
+  @AuthenticateUserDocs()
   async authenticate(
     @Body() body: IDataAuthenticateRequest,
     @Res() reply: Response,
