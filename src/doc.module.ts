@@ -1,5 +1,5 @@
+import { DocUsersController } from '@/controllers/user.controller/doc-users.controller.test';
 import { Module } from '@nestjs/common';
-import { DocUsersController } from '../controllers/doc-users.controller';
 
 @Module({
   imports: [],

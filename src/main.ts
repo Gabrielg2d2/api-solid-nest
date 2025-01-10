@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { DocModule } from './doc/modules';
+import { DocModule } from './doc.module';
 
 function getNodeEnv() {
   const key = process.env.NODE_ENV;
@@ -10,21 +10,21 @@ function getNodeEnv() {
     case 'test':
       return {
         title: 'MyGym API - Test In Memory',
-        name: 'test',
+        environment: 'test',
         port: 4000,
         description: 'The MyGym API documentation, for testing purposes',
       };
     case 'development':
       return {
         title: 'MyGym API - DEV',
-        name: 'development',
+        environment: 'development',
         port: process.env.PORT || 3333,
         description: 'The MyGym API documentation, for development purposes',
       };
     default:
       return {
         title: 'MyGym API - PROD',
-        name: 'production',
+        environment: 'production',
         port: process.env.PORT || 3333,
         description: 'The MyGym API documentation, for production purposes',
       };
@@ -32,9 +32,9 @@ function getNodeEnv() {
 }
 
 async function bootstrap() {
-  const { title, port, description, name } = getNodeEnv();
-  // const app = await NestFactory.create(AppModule);
-  const module = name === 'test' ? DocModule : AppModule;
+  const { title, port, description, environment } = getNodeEnv();
+
+  const module = environment === 'test' ? DocModule : AppModule;
   const app = await NestFactory.create(module);
 
   const config = new DocumentBuilder()
