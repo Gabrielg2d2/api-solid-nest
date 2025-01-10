@@ -1,9 +1,9 @@
-import { BaseUsersController } from '@/controllers/user.controller/base.controller';
 import { UsersDomain } from '@/domain/users/main';
 import { RepositoryUserTest } from '@/domain/users/repositories/repository-test';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
+import { BaseUsersController } from './base.controller';
 
 @ApiTags('doc/users')
 @Controller('/users')
