@@ -1,6 +1,6 @@
 import { IDataCreateUserRequest } from '@/domain/users/main';
 import { applyDecorators } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../functions/useGenerateDoc';
 
 const CreateUserDto = useGenerateDoc<IDataCreateUserRequest>(
@@ -15,6 +15,11 @@ const CreateUserDto = useGenerateDoc<IDataCreateUserRequest>(
 export function CreateUserDocs() {
   return applyDecorators(
     ApiOperation({ summary: 'Create user' }),
+    ApiHeader({
+      name: 'header',
+      description: 'Description header',
+      required: false,
+    }),
     ApiBody({ type: CreateUserDto }),
     ApiResponse({
       status: 201,

@@ -6,7 +6,7 @@ import {
   IDataCreateUserRequest,
   UsersDomain,
 } from '@/domain/users/main';
-import { Body, Get, Param, Post, Res } from '@nestjs/common';
+import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
 export class BaseUsersController {
@@ -14,7 +14,12 @@ export class BaseUsersController {
 
   @Post('/create')
   @CreateUserDocs()
-  async create(@Body() body: IDataCreateUserRequest, @Res() reply: Response) {
+  async create(
+    @Headers('header') headerValue = 'default-value',
+    @Body() body: IDataCreateUserRequest,
+    @Res() reply: Response,
+  ) {
+    console.log('Header value: ', headerValue);
     const result = await this.domain.createUser(body);
 
     return reply.status(result.statusCode).send(result);
