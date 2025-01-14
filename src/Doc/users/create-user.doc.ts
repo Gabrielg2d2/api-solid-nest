@@ -1,7 +1,7 @@
 import { IDataCreateUserRequest } from '@/domain/users/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { useGenerateDoc } from '../functions/useGenerateDoc';
+import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
 const CreateUserDto = useGenerateDoc<IDataCreateUserRequest>(
   {

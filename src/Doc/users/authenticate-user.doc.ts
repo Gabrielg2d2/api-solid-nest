@@ -1,7 +1,7 @@
 import { IDataAuthenticateRequest } from '@/domain/users/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { useGenerateDoc } from '../functions/useGenerateDoc';
+import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
 const AuthenticateUserDto = useGenerateDoc<IDataAuthenticateRequest>(
   {

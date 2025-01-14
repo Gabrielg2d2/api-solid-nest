@@ -1,3 +1,4 @@
+import { IRepositoryGyms } from './repositories/interface';
 import {
   CreateGymUseCase,
   IDataRequest,
@@ -15,11 +16,13 @@ interface IGymsDomain {
 export type { IDataRequest, IFindGym, IReturnCheckInCreate };
 
 export class GymsDomain implements IGymsDomain {
+  constructor(private repository: IRepositoryGyms) {}
+
   async create(data: IDataRequest) {
-    return await new CreateGymUseCase().execute(data);
+    return await new CreateGymUseCase(this.repository).execute(data);
   }
 
   async findGym(gymId: string) {
-    return await new FindGymUseCase().findGym(gymId);
+    return await new FindGymUseCase(this.repository).findGym(gymId);
   }
 }

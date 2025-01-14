@@ -1,6 +1,6 @@
 import { AdapterDayjs } from '@/domain/@adapters/date/dayjs';
 import { randomUUID } from 'node:crypto';
-import { ICheckIn, IDataRequest, IRepositoryCheckIn } from '../interface';
+import { ICheckIn, IDataCreateRequest, IRepositoryCheckIn } from '../interface';
 
 export class RepositoryCheckInTest implements IRepositoryCheckIn {
   private listCheckIn: ICheckIn[] = [
@@ -15,7 +15,7 @@ export class RepositoryCheckInTest implements IRepositoryCheckIn {
 
   constructor(private readonly adapterDate = new AdapterDayjs()) {}
 
-  async create(data: IDataRequest) {
+  async create(data: IDataCreateRequest) {
     const checkIn: ICheckIn = {
       id: randomUUID(),
       created_at: new Date(),

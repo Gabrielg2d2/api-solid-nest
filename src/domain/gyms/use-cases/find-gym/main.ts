@@ -1,5 +1,6 @@
 import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { IGymGlobal, RepositoryGyms } from '../../repositories/repository';
+import { IRepositoryGyms } from '../../repositories/interface';
+import { IGymGlobal } from '../../repositories/repository';
 import { ServiceGymAlreadyExistsError } from '../../services/gym-alredy-exists';
 import { ErrorsFindGym } from './returns/errors';
 import { SuccessFindGym } from './returns/success';
@@ -13,7 +14,7 @@ interface IFindGymUseCase {
 export type { IReturnFindGym };
 
 export class FindGymUseCase implements IFindGymUseCase {
-  constructor(private readonly repository = new RepositoryGyms()) {}
+  constructor(private readonly repository: IRepositoryGyms) {}
 
   async findGym(gymId: string) {
     try {

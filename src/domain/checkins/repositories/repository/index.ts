@@ -1,13 +1,13 @@
 import { AdapterPrisma } from '@/domain/@adapters/repository/prisma';
 
-import { ICheckIn, IDataRequest, IRepositoryCheckIn } from '../interface';
+import { ICheckIn, IDataCreateRequest, IRepositoryCheckIn } from '../interface';
 
-export type { ICheckIn, IDataRequest };
+export type { ICheckIn, IDataCreateRequest };
 
 export class RepositoryCheckIn implements IRepositoryCheckIn {
   constructor(private readonly db = new AdapterPrisma()) {}
 
-  async create({ gymId, userId }: IDataRequest) {
+  async create({ gymId, userId }: IDataCreateRequest) {
     const checkIn = await this.db.prisma.checkIn.create({
       data: {
         gym_id: gymId,

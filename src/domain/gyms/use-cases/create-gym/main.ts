@@ -1,10 +1,7 @@
 import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
 
-import {
-  IDataRequest,
-  IGymGlobal,
-  RepositoryGyms,
-} from '../../repositories/repository';
+import { IRepositoryGyms } from '../../repositories/interface';
+import { IDataRequest, IGymGlobal } from '../../repositories/repository';
 import { ErrorsCreateGym } from './returns/errors';
 import { SuccessCreateGym } from './returns/success';
 
@@ -19,7 +16,7 @@ interface ICreateGymUseCase {
 export type { IDataRequest, IReturnCheckInCreate };
 
 export class CreateGymUseCase implements ICreateGymUseCase {
-  constructor(private readonly repository = new RepositoryGyms()) {}
+  constructor(private readonly repository: IRepositoryGyms) {}
 
   async execute(data: IDataRequest) {
     try {

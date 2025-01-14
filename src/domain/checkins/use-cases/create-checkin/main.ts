@@ -1,12 +1,9 @@
 import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
 import { GymsDomain } from '@/domain/gyms/main';
-import {
-  ICheckIn,
-  IDataRequest,
-  RepositoryCheckIn,
-} from '../../repositories/repository';
+import { ICheckIn, IDataCreateRequest } from '../../repositories/repository';
 import { ServiceCheckInAlreadyExistsToday } from '../../services/check-in-already-exists-today';
 
+import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
 import { ErrorsCreateCheckIn } from './returns/errors';
 import { SuccessCreateCheckIn } from './returns/success';
@@ -16,18 +13,18 @@ type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
 } | null>;
 
 interface ICreateCheckInUseCase {
-  execute(data: IDataRequest): Promise<IReturnCheckInCreate>;
+  execute(data: IDataCreateRequest): Promise<IReturnCheckInCreate>;
 }
 
-export type { IDataRequest, IReturnCheckInCreate };
+export type { IDataCreateRequest, IReturnCheckInCreate };
 
 export class CreateCheckInUseCase implements ICreateCheckInUseCase {
   constructor(
-    private readonly repository: RepositoryCheckIn,
+    private readonly repository: IRepositoryCheckIn,
     private readonly domainGyms: GymsDomain,
   ) {}
 
-  async execute(data: IDataRequest) {
+  async execute(data: IDataCreateRequest) {
     try {
       const checkInOnSomeDate = await this.repository.findByUserIdOnDate(
         data.userId,

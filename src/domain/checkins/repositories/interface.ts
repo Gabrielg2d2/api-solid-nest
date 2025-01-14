@@ -6,7 +6,7 @@ export type ICheckIn = {
   gym_id: string;
 };
 
-export type IDataRequest = {
+export type IDataCreateRequest = {
   gymId: string;
   userId: string;
   userLatitude: number;
@@ -14,7 +14,7 @@ export type IDataRequest = {
 };
 
 export interface IRepositoryCheckIn {
-  create(data: IDataRequest): Promise<ICheckIn>;
+  create(data: IDataCreateRequest): Promise<ICheckIn>;
   findByUserIdOnDate(userId: string, date: Date): Promise<ICheckIn | null>;
   findManyByUserId(userId: string): Promise<ICheckIn[]>;
 }
