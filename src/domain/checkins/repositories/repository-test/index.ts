@@ -3,7 +3,15 @@ import { randomUUID } from 'node:crypto';
 import { ICheckIn, IDataRequest, IRepositoryCheckIn } from '../interface';
 
 export class RepositoryCheckInTest implements IRepositoryCheckIn {
-  private listCheckIn: ICheckIn[] = [];
+  private listCheckIn: ICheckIn[] = [
+    {
+      id: randomUUID(),
+      created_at: new Date(),
+      user_id: '123123',
+      gym_id: '123123',
+      validated_at: null,
+    },
+  ];
 
   constructor(private readonly adapterDate = new AdapterDayjs()) {}
 
@@ -36,5 +44,9 @@ export class RepositoryCheckInTest implements IRepositoryCheckIn {
     if (!checkInOnSomeDate) return null;
 
     return checkInOnSomeDate;
+  }
+
+  async findManyByUserId(userId: string) {
+    return this.listCheckIn.filter((checkIn) => checkIn.user_id === userId);
   }
 }

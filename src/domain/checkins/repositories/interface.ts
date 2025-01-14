@@ -16,4 +16,5 @@ export type IDataRequest = {
 export interface IRepositoryCheckIn {
   create(data: IDataRequest): Promise<ICheckIn>;
   findByUserIdOnDate(userId: string, date: Date): Promise<ICheckIn | null>;
+  findManyByUserId(userId: string): Promise<ICheckIn[]>;
 }
