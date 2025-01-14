@@ -30,4 +30,12 @@ export class RepositoryCheckIn implements IRepositoryCheckIn {
 
     return checkInOnSomeDate;
   }
+
+  async findManyByUserId(userId: string) {
+    return await this.db.prisma.checkIn.findMany({
+      where: {
+        user_id: userId,
+      },
+    });
+  }
 }
