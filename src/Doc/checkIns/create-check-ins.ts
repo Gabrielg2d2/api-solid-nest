@@ -5,8 +5,8 @@ import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
 const CreateCheckInsDto = useGenerateDoc<IDataCreateRequest>(
   {
-    gymId: '1',
-    userId: '1',
+    gymId: '123',
+    userId: '123123123',
     userLatitude: -123.123,
     userLongitude: 123.123,
   },

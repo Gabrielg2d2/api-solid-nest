@@ -7,8 +7,8 @@ export class RepositoryCheckInTest implements IRepositoryCheckIn {
     {
       id: randomUUID(),
       created_at: new Date(),
-      user_id: '123123',
-      gym_id: '123123',
+      user_id: '123123123',
+      gym_id: '123',
       validated_at: null,
     },
   ];
