@@ -3,12 +3,8 @@ import { ICheckIn, IRepositoryCheckIn } from '../../repositories/interface';
 import { ErrorsSuccessFetchHistoryCheckIns } from './returns/errors';
 import { SuccessFetchHistoryCheckIns } from './returns/success';
 
-type IDataRequest = {
-  userId: string;
-};
-
 type IFetchHistoryCheckInsUseCase = {
-  execute(data: IDataRequest): Promise<
+  execute(userId: string): Promise<
     IReturnDefaultDomainGlobal<{
       historyCheckIns: ICheckIn[];
     } | null>
@@ -20,9 +16,9 @@ export class FetchHistoryCheckInsUseCase
 {
   constructor(private readonly repository: IRepositoryCheckIn) {}
 
-  async execute(data: IDataRequest) {
+  async execute(userId: string) {
     try {
-      const checkIns = await this.repository.findManyByUserId(data.userId);
+      const checkIns = await this.repository.findManyByUserId(userId);
 
       return await new SuccessFetchHistoryCheckIns().execute(checkIns);
     } catch (error) {

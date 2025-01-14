@@ -5,9 +5,11 @@ import {
   IDataRequest,
   IReturnCheckInCreate,
 } from './use-cases/create-checkin/main';
+import { FetchHistoryCheckInsUseCase } from './use-cases/fetch-history-check-ins/main';
 
 interface ICheckInDomain {
   create(data: IDataRequest): Promise<IReturnCheckInCreate>;
+  fetchHistoryCheckIns(userId: string): Promise<any>;
 }
 
 export type { IDataRequest, IReturnCheckInCreate };
@@ -23,5 +25,11 @@ export class CheckInDomain implements ICheckInDomain {
       this.repository,
       this.domainGyms,
     ).execute(data);
+  }
+
+  async fetchHistoryCheckIns(userId: string) {
+    return await new FetchHistoryCheckInsUseCase(this.repository).execute(
+      userId,
+    );
   }
 }
