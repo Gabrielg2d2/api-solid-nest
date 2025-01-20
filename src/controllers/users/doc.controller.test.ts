@@ -1,4 +1,4 @@
-import { UsersDomain } from '@/domain/users/main';
+import { FactoryUsersDomainTest } from '@/application/factories/users/domain.test';
 import { RepositoryUserTest } from '@/domain/users/repositories/repository-test';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -12,7 +12,7 @@ export class DocUsersController extends BaseUsersController {
 
   constructor() {
     super();
-    this.domain = new UsersDomain(this.repository);
+    this.domain = FactoryUsersDomainTest.create();
   }
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
   @Get('/clear-all-repository-in-memory')
