@@ -3,8 +3,8 @@ import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BaseCheckInsController } from './base.controller';
 
-@ApiTags('users')
-@Controller('/users')
+@ApiTags('check-ins')
+@Controller('/check-ins')
 export class CheckInsController extends BaseCheckInsController {
   constructor() {
     super();
