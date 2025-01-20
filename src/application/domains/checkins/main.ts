@@ -1,4 +1,4 @@
-import { GymsDomain } from '../gyms/main';
+import { GymsDomain } from '@/domain/gyms/main';
 import { IRepositoryCheckIn } from './repositories/interface';
 import {
   CreateCheckInUseCase,
