@@ -7,8 +7,8 @@ const CreateCheckInsDto = useGenerateDoc<IDataCreateRequest>(
   {
     gymId: '123',
     userId: '123123123',
-    userLatitude: -123.123,
-    userLongitude: 123.123,
+    userLatitude: -6.1234,
+    userLongitude: 106.1234,
   },
   'CreateCheckInsDto',
 );
