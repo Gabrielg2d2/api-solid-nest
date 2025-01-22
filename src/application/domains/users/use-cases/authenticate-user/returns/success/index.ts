@@ -1,6 +1,6 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { ITypeMessageGlobal } from '@/domain/@global/types/type-message';
-import { IUserGlobal } from '@/domain/@global/types/user';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
+import { IUserGlobal } from '@/application/@global/types/user';
 
 export type IDataSuccess = {
   user: IUserGlobal | null;

@@ -1,5 +1,5 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { IUserGlobal } from '@/domain/@global/types/user';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { IUserGlobal } from '@/application/@global/types/user';
 import { IRepositoryUsers } from '../../repositories/interface';
 import { ServiceCreatePasswordHash } from '../../services/create-password-hash';
 import { ServiceValidationUserAlreadyExists } from '../../services/validating-user-alredy-exists';
