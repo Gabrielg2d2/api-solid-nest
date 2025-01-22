@@ -1,5 +1,4 @@
-import { AdapterPrisma } from '@/domain/@adapters/repository/prisma';
-
+import { AdapterPrisma } from '@/application/@adapters/repository/prisma';
 import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 
 export class RepositoryUsers implements IRepositoryUsers {

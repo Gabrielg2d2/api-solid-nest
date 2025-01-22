@@ -1,6 +1,6 @@
-import { AdapterBcryptjs } from '@/domain/@adapters/hash/bcryptjs';
-import { CustomErrorGlobal } from '@/domain/@global/class/errors/custom';
-import { IUserGlobal } from '@/domain/@global/types/user';
+import { AdapterBcryptjs } from '@/application/@adapters/hash/bcryptjs';
+import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidatingAuthenticatedUser {
   execute(user: IUserGlobal | null, password: string): Promise<void>;

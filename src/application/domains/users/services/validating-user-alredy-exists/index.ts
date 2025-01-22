@@ -1,5 +1,5 @@
-import { CustomErrorGlobal } from '@/domain/@global/class/errors/custom';
-import { IUserGlobal } from '@/domain/@global/types/user';
+import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidationUserAlreadyExists {
   execute(user: IUserGlobal | null): Promise<void>;
