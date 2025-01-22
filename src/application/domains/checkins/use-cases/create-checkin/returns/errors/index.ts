@@ -1,4 +1,4 @@
-import { CustomErrorService } from '@/application/@global/class/errors/service';
+import { PresenterErrorGlobal } from '@/application/@global/class/presenter/error';
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
@@ -6,7 +6,14 @@ interface IErrorsCreateCheckIn {
   execute(error: Error | unknown): Promise<IReturnDefaultDomainGlobal<null>>;
 }
 
-export class ErrorsCreateCheckIn extends Error implements IErrorsCreateCheckIn {
+export class PresenterErrorCreateCheckIn
+  extends PresenterErrorGlobal
+  implements IErrorsCreateCheckIn
+{
+  constructor() {
+    super();
+  }
+
   async execute(error: Error | unknown) {
     if (error instanceof Error) {
       if (error.message === 'Error: Check in already done today') {
@@ -36,6 +43,6 @@ export class ErrorsCreateCheckIn extends Error implements IErrorsCreateCheckIn {
       }
     }
 
-    return new CustomErrorService().execute(error);
+    return super.serverInternalError(error);
   }
 }

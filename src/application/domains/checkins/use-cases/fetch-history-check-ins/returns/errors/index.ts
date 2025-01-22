@@ -1,4 +1,4 @@
-import { CustomErrorService } from '@/application/@global/class/errors/service';
+import { PresenterErrorGlobal } from '@/application/@global/class/presenter/error';
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 
 interface IErrorsSuccessFetchHistoryCheckIns {
@@ -6,9 +6,14 @@ interface IErrorsSuccessFetchHistoryCheckIns {
 }
 
 export class ErrorsSuccessFetchHistoryCheckIns
+  extends PresenterErrorGlobal
   implements IErrorsSuccessFetchHistoryCheckIns
 {
+  constructor() {
+    super();
+  }
+
   async execute(error: Error | unknown) {
-    return new CustomErrorService().execute(error);
+    return await super.serverInternalError(error);
   }
 }

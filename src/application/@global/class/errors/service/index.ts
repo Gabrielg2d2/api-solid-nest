@@ -12,6 +12,9 @@ import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
  *
  *
  **/
+
+//
+// TODO: remover classe e arquivo
 export class CustomErrorService {
   execute(error: Error | unknown | null) {
     return {
