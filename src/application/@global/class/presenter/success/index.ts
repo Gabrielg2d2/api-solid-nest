@@ -15,6 +15,10 @@ export class PresenterSuccessGlobal<T> implements IPresenterSuccessGlobal<T> {
   ) {}
 
   async execute(data: T) {
+    if (!data) {
+      throw new Error('Unexpected: vvData is required');
+    }
+
     return {
       data,
       message: this.message,
