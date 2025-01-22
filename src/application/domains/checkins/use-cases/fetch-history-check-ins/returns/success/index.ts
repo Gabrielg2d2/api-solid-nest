@@ -24,7 +24,7 @@ export class SuccessFetchHistoryCheckIns
       },
       message: {
         en: 'fetch history check-ins successfully',
-        pt: 'fetch history check-ins com sucesso',
+        pt: 'histórico de check-ins recuperado com sucesso',
       },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 200,

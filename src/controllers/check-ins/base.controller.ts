@@ -3,7 +3,7 @@ import {
   IDataCreateRequest,
 } from '@/application/domains/checkins/main';
 import { CreateCheckInsDocs } from '@/doc/checkIns/create-check-ins';
-import { Body, Headers, Post, Res } from '@nestjs/common';
+import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
 export class BaseCheckInsController {
@@ -18,6 +18,16 @@ export class BaseCheckInsController {
   ) {
     console.log('Header value: ', headerValue);
     const result = await this.domain.create(body);
+
+    return reply.status(result.statusCode).send(result);
+  }
+
+  @Get('/history-check-ins/:userId')
+  async fetchHistoryCheckIns(
+    @Param('userId') userId: string,
+    @Res() reply: Response,
+  ) {
+    const result = await this.domain.fetchHistoryCheckIns(userId);
 
     return reply.status(result.statusCode).send(result);
   }
