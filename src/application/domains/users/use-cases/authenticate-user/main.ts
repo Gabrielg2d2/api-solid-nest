@@ -1,8 +1,8 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { IUserGlobal } from '@/domain/@global/types/user';
-import { ServiceValidatingAuthenticatedUser } from '@/domain/users/services/validatiing-authenticated-user';
-import { ServiceValidationEmailPassword } from '@/domain/users/services/validating-email-password';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { IUserGlobal } from '@/application/@global/types/user';
 import { IRepositoryUsers } from '../../repositories/interface';
+import { ServiceValidatingAuthenticatedUser } from '../../services/validatiing-authenticated-user';
+import { ServiceValidationEmailPassword } from '../../services/validating-email-password';
 import { ErrorsAuthenticateUser } from './returns/errors';
 import { SuccessAuthenticateUser } from './returns/success';
 
