@@ -7,7 +7,7 @@ import { GymsDomain } from '@/application/domains/gyms/main';
 import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
 import { ServiceGymExists } from '../../services/gym-exists';
-import { PresenterErrorCreateCheckIn } from './presenters/errors';
+import { PresenterErrorCreateCheckIn } from './errors';
 
 type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
   checkIn: ICheckIn;
