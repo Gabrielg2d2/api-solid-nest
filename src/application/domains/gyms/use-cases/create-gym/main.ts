@@ -1,7 +1,7 @@
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { IRepositoryGyms } from '../../repositories/interface';
 import { IDataRequest, IGymGlobal } from '../../repositories/repository';
-import { ErrorsCreateGym } from './returns/errors';
+import { ReturnError } from './returns/errors';
 import { SuccessCreateGym } from './returns/success';
 
 type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
@@ -23,7 +23,7 @@ export class CreateGymUseCase implements ICreateGymUseCase {
 
       return await new SuccessCreateGym().execute(newGym);
     } catch (error) {
-      return await new ErrorsCreateGym().execute(error);
+      return await new ReturnError().execute(error);
     }
   }
 }

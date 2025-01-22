@@ -1,12 +1,15 @@
-import { CustomErrorService } from '@/application/@global/class/errors/service';
+import { PresenterErrorGlobal } from '@/application/@global/class/presenter/error';
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 
-interface IErrorsCreateGym {
+interface IReturnError {
   execute(error: Error | unknown): Promise<IReturnDefaultDomainGlobal<null>>;
 }
 
-export class ErrorsCreateGym extends Error implements IErrorsCreateGym {
+export class ReturnError extends PresenterErrorGlobal implements IReturnError {
+  constructor() {
+    super();
+  }
   async execute(error: Error | unknown) {
-    return new CustomErrorService().execute(error);
+    return await super.serverInternalError(error);
   }
 }

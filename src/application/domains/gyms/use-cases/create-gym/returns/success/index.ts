@@ -1,32 +1,19 @@
+import { PresenterSuccessGlobal } from '@/application/@global/class/presenter/success';
 import { IGymGlobal } from '@/application/@global/types/gym';
-import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
-import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
-interface ISuccessCreateGym {
-  execute(data: IGymGlobal | null): Promise<
-    IReturnDefaultDomainGlobal<{
-      gym: IGymGlobal;
-    }>
-  >;
-}
+type IData = { gym: IGymGlobal };
 
-export class SuccessCreateGym implements ISuccessCreateGym {
-  async execute(data: IGymGlobal | null) {
-    if (!data?.id) {
-      throw new Error('Unexpected: Data is required');
-    }
-
-    return {
+export class ReturnSuccess {
+  async execute(data: IGymGlobal) {
+    return await new PresenterSuccessGlobal<IData>().execute({
       data: {
         gym: data,
       },
+      statusCode: 201,
       message: {
         en: 'Gym created successfully',
-        pt: 'Academia criada com sucesso',
+        ptBr: 'Academia criada com sucesso',
       },
-      typeMessage: ITypeMessageGlobal.SUCCESS,
-      statusCode: 201,
-      error: null,
-    };
+    });
   }
 }
