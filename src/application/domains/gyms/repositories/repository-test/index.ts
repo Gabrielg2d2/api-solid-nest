@@ -29,11 +29,17 @@ export class RepositoryGymsTest implements IRepositoryGyms {
 
     return newGym;
   }
+
   async findById(id: string) {
     const gym = this.listGyms.find((gym) => gym.id === id);
 
     if (!gym) return null;
 
     return gym;
+  }
+
+  // TODO: APENAS DOCUMENTAÇÃO - INICIO
+  async getAllGyms() {
+    return this.listGyms;
   }
 }

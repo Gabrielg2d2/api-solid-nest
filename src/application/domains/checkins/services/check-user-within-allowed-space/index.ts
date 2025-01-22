@@ -45,6 +45,8 @@ export class ServiceCheckUserWithinAllowedSpace
   async execute(from: ICoordinate, to: ICoordinate) {
     const distance = getDistanceBetweenCoordinates(from, to);
 
+    console.log('distance ==> ', distance);
+
     const MAX_DISTANCE_IN_KILOMETERS = 0.1;
 
     if (distance > MAX_DISTANCE_IN_KILOMETERS) {

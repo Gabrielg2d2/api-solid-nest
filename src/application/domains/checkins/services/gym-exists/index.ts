@@ -7,7 +7,7 @@ interface IServiceGymExists {
 export class ServiceGymExists implements IServiceGymExists {
   async execute(gym?: IGymGlobal) {
     if (!gym?.id || !gym?.title || !gym?.latitude || !gym?.longitude) {
-      throw new Error('Unexpect: Gym not found');
+      throw new Error('Unexpect: Gym not found in check-in');
     }
 
     return gym;
