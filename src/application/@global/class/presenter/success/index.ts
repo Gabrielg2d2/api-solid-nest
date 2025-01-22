@@ -1,9 +1,9 @@
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
-type IProps<T> = {
+type IProps = {
   statusCode: number;
-  data: T;
+  data: any;
   message?: {
     en: string;
     ptBr: string;
@@ -11,17 +11,17 @@ type IProps<T> = {
 };
 
 interface IPresenterSuccessGlobal<T> {
-  execute(props: IProps<T>): Promise<IReturnDefaultDomainGlobal<T>>;
+  execute(props: IProps): Promise<IReturnDefaultDomainGlobal<T>>;
 }
 
 export class PresenterSuccessGlobal<T> implements IPresenterSuccessGlobal<T> {
-  async execute(props: IProps<T>): Promise<IReturnDefaultDomainGlobal<T>> {
-    if (!props.data) {
+  async execute(props: IProps) {
+    if (!props?.data) {
       throw new Error('Unexpected: Data is required');
     }
 
     return {
-      data: props.data,
+      data: props.data as T,
       message: props.message || { en: '', ptBr: '' },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: props.statusCode,

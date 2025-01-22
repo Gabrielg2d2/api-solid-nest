@@ -2,7 +2,7 @@ import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-d
 import { IRepositoryGyms } from '../../repositories/interface';
 import { IDataRequest, IGymGlobal } from '../../repositories/repository';
 import { ReturnError } from './returns/errors';
-import { SuccessCreateGym } from './returns/success';
+import { ReturnSuccess } from './returns/success';
 
 type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
   gym: IGymGlobal;
@@ -21,7 +21,7 @@ export class CreateGymUseCase implements ICreateGymUseCase {
     try {
       const newGym = await this.repository.create(data);
 
-      return await new SuccessCreateGym().execute(newGym);
+      return await new ReturnSuccess().execute(newGym);
     } catch (error) {
       return await new ReturnError().execute(error);
     }

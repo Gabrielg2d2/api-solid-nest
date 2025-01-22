@@ -1,12 +1,11 @@
-import { CustomErrorService } from '@/application/@global/class/errors/service';
-import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { PresenterErrorGlobal } from '@/application/@global/class/presenter/error';
 import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
-interface IErrorsFindGym {
-  execute(error: Error | unknown): Promise<IReturnDefaultDomainGlobal<null>>;
-}
+export class ReturnError extends PresenterErrorGlobal {
+  constructor() {
+    super();
+  }
 
-export class ErrorsFindGym extends Error implements IErrorsFindGym {
   async execute(error: Error | unknown) {
     if (error instanceof Error) {
       if (error.message === 'Error: Gym not found') {
@@ -14,7 +13,7 @@ export class ErrorsFindGym extends Error implements IErrorsFindGym {
           data: null,
           message: {
             en: 'Gym not found',
-            pt: 'Academia não encontrada',
+            ptBr: 'Academia não encontrada',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 404,
@@ -23,6 +22,6 @@ export class ErrorsFindGym extends Error implements IErrorsFindGym {
       }
     }
 
-    return new CustomErrorService().execute(error);
+    return await super.serverInternalError(error);
   }
 }
