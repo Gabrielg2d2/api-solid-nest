@@ -15,7 +15,7 @@ export class DocUsersController extends BaseUsersController {
     this.domain = FactoryUsersDomainTest.create();
   }
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
-  @Get('/clear-all-repository-in-memory')
+  @Get('/auxiliary-route-clear-all')
   async clear(@Res() reply: Response) {
     const repository = this.repository;
     await repository.clearAllUsers();
@@ -25,7 +25,7 @@ export class DocUsersController extends BaseUsersController {
     });
   }
 
-  @Get('/fetch-all-repository-in-memory')
+  @Get('/auxiliary-route-fetch-all')
   async fetch(@Res() reply: Response) {
     const repository = this.repository;
     const result = await repository.getAllUsers();

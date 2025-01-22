@@ -17,7 +17,7 @@ export class DocGymsController extends BaseGymsController {
 
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
 
-  @Get('/fetch-all-gyms-in-memory')
+  @Get('/auxiliary-route-fetch-all-gyms')
   async fetch(@Res() reply: Response) {
     const repository = this.repository;
     const result = await repository.getAllGyms();
