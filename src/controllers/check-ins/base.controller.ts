@@ -3,6 +3,7 @@ import {
   IDataCreateRequest,
 } from '@/application/domains/checkins/main';
 import { CreateCheckInsDocs } from '@/doc/checkIns/create-check-ins';
+import { HistoryCheckInsDocs } from '@/doc/checkIns/fetch-historys-check-ins';
 import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
@@ -23,6 +24,7 @@ export class BaseCheckInsController {
   }
 
   @Get('/history-check-ins/:userId')
+  @HistoryCheckInsDocs()
   async fetchHistoryCheckIns(
     @Param('userId') userId: string,
     @Res() reply: Response,
