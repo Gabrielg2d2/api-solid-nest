@@ -4,7 +4,7 @@ export type IReturnDefaultDomainGlobal<D> = {
   data: D;
   message: {
     en: string;
-    pt: string;
+    ptBr: string;
   };
   typeMessage: ITypeMessageGlobal;
   statusCode: number;

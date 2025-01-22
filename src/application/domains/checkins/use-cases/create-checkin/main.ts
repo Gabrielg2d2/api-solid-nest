@@ -7,7 +7,7 @@ import { GymsDomain } from '@/application/domains/gyms/main';
 import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
 import { ServiceGymExists } from '../../services/gym-exists';
-import { PresenterErrorCreateCheckIn } from './errors';
+import { PresenterErrorCreateCheckIn } from './presenters/errors';
 
 type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
   checkIn: ICheckIn;
@@ -48,9 +48,16 @@ export class CreateCheckInUseCase implements ICreateCheckInUseCase {
 
       const checkIn = await this.repository.create(data);
 
-      return await new PresenterSuccessGlobal<{ checkIn: ICheckIn }>(
-        201,
-      ).execute({ checkIn });
+      return await new PresenterSuccessGlobal<{ checkIn: ICheckIn }>().execute({
+        data: {
+          checkIn,
+        },
+        statusCode: 201,
+        message: {
+          en: 'Check-in created successfully',
+          ptBr: 'Check-in criado com sucesso',
+        },
+      });
     } catch (error) {
       return await new PresenterErrorCreateCheckIn().execute(error);
     }

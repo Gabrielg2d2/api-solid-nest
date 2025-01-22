@@ -21,7 +21,7 @@ export class PresenterErrorCreateCheckIn
           data: null,
           message: {
             en: 'You have already checked in today',
-            pt: 'Você já fez check-in hoje',
+            ptBr: 'Você já fez check-in hoje',
           },
           typeMessage: ITypeMessageGlobal.WARNING,
           statusCode: 400,
@@ -34,7 +34,7 @@ export class PresenterErrorCreateCheckIn
           data: null,
           message: {
             en: 'You are not close to the gym',
-            pt: 'Você não está próximo a academia',
+            ptBr: 'Você não está próximo a academia',
           },
           typeMessage: ITypeMessageGlobal.WARNING,
           statusCode: 400,
