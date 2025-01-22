@@ -8,7 +8,7 @@ import { BaseUsersController } from './base.controller';
 @ApiTags('doc/users')
 @Controller('/users')
 export class DocUsersController extends BaseUsersController {
-  private repository = new RepositoryUserTest();
+  private repository = RepositoryUserTest.getInstance();
 
   constructor() {
     super();

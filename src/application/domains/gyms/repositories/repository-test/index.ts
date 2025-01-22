@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { IDataRequest, IRepositoryGyms } from '../interface';
 
 export class RepositoryGymsTest implements IRepositoryGyms {
+  private static instance: RepositoryGymsTest;
   private listGyms: IGymGlobal[] = [
     {
       id: '123',
@@ -13,6 +14,15 @@ export class RepositoryGymsTest implements IRepositoryGyms {
       description: 'Description Test',
     },
   ];
+
+  private constructor() {}
+
+  public static getInstance() {
+    if (!RepositoryGymsTest.instance) {
+      RepositoryGymsTest.instance = new RepositoryGymsTest();
+    }
+    return RepositoryGymsTest.instance;
+  }
 
   async create(data: IDataRequest) {
     const newGym = {

@@ -3,7 +3,7 @@ import { RepositoryGymsTest } from '../../domains/gyms/repositories/repository-t
 
 export class FactoryGymsDomainTest {
   static create() {
-    const repositoryGyms = new RepositoryGymsTest();
+    const repositoryGyms = RepositoryGymsTest.getInstance();
     return new GymsDomain(repositoryGyms);
   }
 }

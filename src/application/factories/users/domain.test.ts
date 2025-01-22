@@ -3,7 +3,7 @@ import { RepositoryUserTest } from '../../domains/users/repositories/repository-
 
 export class FactoryUsersDomainTest {
   static create() {
-    const repository = new RepositoryUserTest();
+    const repository = RepositoryUserTest.getInstance();
     return new UsersDomain(repository);
   }
 }

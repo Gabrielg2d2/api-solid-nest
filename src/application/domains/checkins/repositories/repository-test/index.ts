@@ -3,6 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { ICheckIn, IDataCreateRequest, IRepositoryCheckIn } from '../interface';
 
 export class RepositoryCheckInTest implements IRepositoryCheckIn {
+  private static instance: RepositoryCheckInTest;
   private listCheckIn: ICheckIn[] = [
     {
       id: randomUUID(),
@@ -13,7 +14,14 @@ export class RepositoryCheckInTest implements IRepositoryCheckIn {
     },
   ];
 
-  constructor(private readonly adapterDate = new AdapterDayjs()) {}
+  private constructor(private readonly adapterDate = new AdapterDayjs()) {}
+
+  public static getInstance() {
+    if (!RepositoryCheckInTest.instance) {
+      RepositoryCheckInTest.instance = new RepositoryCheckInTest();
+    }
+    return RepositoryCheckInTest.instance;
+  }
 
   async create(data: IDataCreateRequest) {
     const checkIn: ICheckIn = {

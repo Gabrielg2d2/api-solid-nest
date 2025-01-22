@@ -8,7 +8,7 @@ import { BaseGymsController } from './base.controller';
 @ApiTags('doc/gyms')
 @Controller('/gyms')
 export class DocGymsController extends BaseGymsController {
-  private repository = new RepositoryGymsTest();
+  private repository = RepositoryGymsTest.getInstance();
 
   constructor() {
     super();

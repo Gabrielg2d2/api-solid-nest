@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 
 export class RepositoryUserTest implements IRepositoryUsers {
+  private static instance: RepositoryUserTest;
   private users: IUserGlobal[] = [
     {
       id: '123123123',
@@ -14,6 +15,15 @@ export class RepositoryUserTest implements IRepositoryUsers {
       created_at: new Date(),
     },
   ];
+
+  private constructor() {}
+
+  public static getInstance() {
+    if (!RepositoryUserTest.instance) {
+      RepositoryUserTest.instance = new RepositoryUserTest();
+    }
+    return RepositoryUserTest.instance;
+  }
 
   // TODO: DOC APENAS SWAGGER
   async clearAllUsers() {

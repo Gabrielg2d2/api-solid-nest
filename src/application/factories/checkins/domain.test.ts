@@ -5,8 +5,8 @@ import { RepositoryGymsTest } from '../../domains/gyms/repositories/repository-t
 
 export class FactoryCheckInsDomainTest {
   static create() {
-    const repositoryCheckIns = new RepositoryCheckInTest();
-    const repositoryGyms = new RepositoryGymsTest();
+    const repositoryCheckIns = RepositoryCheckInTest.getInstance();
+    const repositoryGyms = RepositoryGymsTest.getInstance();
     const domainGyms = new GymsDomain(repositoryGyms);
     return new CheckInDomain(repositoryCheckIns, domainGyms);
   }
