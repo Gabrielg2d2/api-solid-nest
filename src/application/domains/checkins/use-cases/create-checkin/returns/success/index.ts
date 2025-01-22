@@ -1,14 +1,16 @@
 import { PresenterSuccessGlobal } from '@/application/@global/class/presenter/success';
-import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { ICheckIn } from '@/application/domains/checkins/repositories/interface';
 
-interface IReturnSuccess<T> {
-  execute(data: T): Promise<IReturnDefaultDomainGlobal<T>>;
-}
+type IData = {
+  checkIn: ICheckIn;
+};
 
-export class ReturnSuccess<T> implements IReturnSuccess<T> {
-  async execute(data: T): Promise<IReturnDefaultDomainGlobal<T>> {
-    return await new PresenterSuccessGlobal<T>().execute({
-      data,
+export class ReturnSuccess {
+  async execute(data: ICheckIn | null) {
+    return await new PresenterSuccessGlobal<IData>().execute({
+      data: {
+        checkIn: data,
+      },
       statusCode: 201,
       message: {
         en: 'Check-in created successfully',

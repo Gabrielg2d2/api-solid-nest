@@ -48,9 +48,7 @@ export class CreateCheckInUseCase implements ICreateCheckInUseCase {
 
       const checkIn = await this.repository.create(data);
 
-      return await new ReturnSuccess<{
-        checkIn: ICheckIn;
-      }>().execute({ checkIn });
+      return await new ReturnSuccess().execute(checkIn);
     } catch (error) {
       return await new ReturnError().execute(error);
     }
