@@ -1,7 +1,7 @@
-import { CheckInDomain } from '@/domain/checkins/main';
-import { RepositoryCheckIn } from '@/domain/checkins/repositories/repository';
-import { GymsDomain } from '@/domain/gyms/main';
-import { RepositoryGyms } from '@/domain/gyms/repositories/repository';
+import { CheckInDomain } from '../../domains/checkins/main';
+import { RepositoryCheckIn } from '../../domains/checkins/repositories/repository';
+import { GymsDomain } from '../../domains/gyms/main';
+import { RepositoryGyms } from '../../domains/gyms/repositories/repository';
 
 export class FactoryCheckInsDomain {
   static create() {
