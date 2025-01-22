@@ -1,4 +1,4 @@
-import { GymsDomain } from '@/domain/gyms/main';
+import { GymsDomain } from '@/application/domains/gyms/main';
 import {
   afterEach,
   beforeEach,

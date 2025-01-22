@@ -1,8 +1,8 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { GymsDomain } from '@/domain/gyms/main';
 import { ICheckIn, IDataCreateRequest } from '../../repositories/repository';
 import { ServiceCheckInAlreadyExistsToday } from '../../services/check-in-already-exists-today';
 
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { GymsDomain } from '@/application/domains/gyms/main';
 import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
 import { ServiceGymExists } from '../../services/gym-exists';

@@ -1,4 +1,4 @@
-import { AdapterDayjs } from '@/domain/@adapters/date/dayjs';
+import { AdapterDayjs } from '@/application/@adapters/date/dayjs';
 import { randomUUID } from 'node:crypto';
 import { ICheckIn, IDataCreateRequest, IRepositoryCheckIn } from '../interface';
 
