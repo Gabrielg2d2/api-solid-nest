@@ -1,5 +1,5 @@
-import { UsersDomain } from '@/domain/users/main';
-import { RepositoryUsers } from '@/domain/users/repositories/repository';
+import { UsersDomain } from '../../domains/users/main';
+import { RepositoryUsers } from '../../domains/users/repositories/repository';
 
 export class FactoryUsersDomain {
   static create() {
