@@ -2,14 +2,11 @@ import { PresenterErrorGlobal } from '@/application/@global/class/presenter/erro
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
-interface IErrorsCreateCheckIn {
+interface IReturnError {
   execute(error: Error | unknown): Promise<IReturnDefaultDomainGlobal<null>>;
 }
 
-export class PresenterErrorCreateCheckIn
-  extends PresenterErrorGlobal
-  implements IErrorsCreateCheckIn
-{
+export class ReturnError extends PresenterErrorGlobal implements IReturnError {
   constructor() {
     super();
   }
