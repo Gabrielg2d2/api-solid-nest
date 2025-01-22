@@ -1,7 +1,7 @@
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ICheckIn, IRepositoryCheckIn } from '../../repositories/interface';
-import { ErrorsSuccessFetchHistoryCheckIns } from './returns/errors';
-import { SuccessFetchHistoryCheckIns } from './returns/success';
+import { ReturnError } from './errors';
+import { ReturnSuccess } from './returns/success';
 
 type IFetchHistoryCheckInsUseCase = {
   execute(userId: string): Promise<
@@ -20,9 +20,9 @@ export class FetchHistoryCheckInsUseCase
     try {
       const checkIns = await this.repository.findManyByUserId(userId);
 
-      return await new SuccessFetchHistoryCheckIns().execute(checkIns);
+      return await new ReturnSuccess().execute(checkIns);
     } catch (error) {
-      return await new ErrorsSuccessFetchHistoryCheckIns().execute(error);
+      return await new ReturnError().execute(error);
     }
   }
 }

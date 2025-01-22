@@ -1,34 +1,21 @@
-import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
-import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
+import { PresenterSuccessGlobal } from '@/application/@global/class/presenter/success';
 import { ICheckIn } from '../../../../repositories/repository';
 
-interface ISuccessFetchHistoryCheckIns {
-  execute(data: ICheckIn[]): Promise<
-    IReturnDefaultDomainGlobal<{
-      historyCheckIns: ICheckIn[];
-    }>
-  >;
-}
+type IData = {
+  historyCheckIns: ICheckIn[];
+};
 
-export class SuccessFetchHistoryCheckIns
-  implements ISuccessFetchHistoryCheckIns
-{
+export class ReturnSuccess {
   async execute(data: ICheckIn[] | null) {
-    if (!data) {
-      throw new Error('Unexpected: Data is required');
-    }
-
-    return {
+    return await new PresenterSuccessGlobal<IData>().execute({
       data: {
         historyCheckIns: data,
       },
-      message: {
-        en: 'fetch history check-ins successfully',
-        pt: 'histórico de check-ins recuperado com sucesso',
-      },
-      typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 200,
-      error: null,
-    };
+      message: {
+        en: 'History check-ins fetched successfully',
+        ptBr: 'Histórico de check-ins buscado com sucesso',
+      },
+    });
   }
 }
