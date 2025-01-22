@@ -1,4 +1,4 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { IRepositoryGyms } from '../../repositories/interface';
 import { IGymGlobal } from '../../repositories/repository';
 import { ServiceGymAlreadyExistsError } from '../../services/gym-alredy-exists';

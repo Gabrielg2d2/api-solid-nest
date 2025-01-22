@@ -1,6 +1,5 @@
-import { CustomErrorService } from '@/domain/@global/class/errors/service';
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { ITypeMessageGlobal } from '@/domain/@global/types/type-message';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
 interface IErrorsCreateUser {
   execute(error: Error | unknown): Promise<IReturnDefaultDomainGlobal<null>>;

@@ -1,4 +1,4 @@
-import { CustomErrorGlobal } from '@/domain/@global/class/errors/custom';
+import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
 import { IGymGlobal } from '../../repositories/repository';
 
 export class ServiceGymAlreadyExistsError {
