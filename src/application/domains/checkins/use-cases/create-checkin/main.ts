@@ -5,6 +5,7 @@ import { ServiceCheckInAlreadyExistsToday } from '../../services/check-in-alread
 
 import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
+import { ServiceGymExists } from '../../services/gym-exists';
 import { ErrorsCreateCheckIn } from './returns/errors';
 import { SuccessCreateCheckIn } from './returns/success';
 
@@ -31,19 +32,16 @@ export class CreateCheckInUseCase implements ICreateCheckInUseCase {
         new Date(),
       );
 
-      const gym = await this.domainGyms.findGym(data.gymId);
+      const result = await this.domainGyms.findGym(data.gymId);
 
-      if (!gym.data?.gym.id) {
-        // TODO: Implementar ServiceErrorGymNotFound
-        throw new Error('Gym not found');
-      }
+      const gym = await new ServiceGymExists().execute(result.data?.gym);
 
       await new ServiceCheckUserWithinAllowedSpace().execute(
         {
           latitude: data.userLatitude,
           longitude: data.userLongitude,
         },
-        { latitude: gym.data.gym.latitude, longitude: gym.data.gym.longitude },
+        { latitude: gym.latitude, longitude: gym.longitude },
       );
 
       await new ServiceCheckInAlreadyExistsToday().execute(checkInOnSomeDate);
