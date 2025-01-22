@@ -1,5 +1,4 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { IRepositoryGyms } from '../../repositories/interface';
 import { IDataRequest, IGymGlobal } from '../../repositories/repository';
 import { ErrorsCreateGym } from './returns/errors';

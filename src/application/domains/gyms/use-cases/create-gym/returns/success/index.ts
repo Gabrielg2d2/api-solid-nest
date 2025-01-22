@@ -1,6 +1,6 @@
-import { IGymGlobal } from '@/domain/@global/types/gym';
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
-import { ITypeMessageGlobal } from '@/domain/@global/types/type-message';
+import { IGymGlobal } from '@/application/@global/types/gym';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
+import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 
 interface ISuccessCreateGym {
   execute(data: IGymGlobal | null): Promise<

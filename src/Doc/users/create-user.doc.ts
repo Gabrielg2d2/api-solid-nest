@@ -1,4 +1,4 @@
-import { IDataCreateUserRequest } from '@/domain/users/main';
+import { IDataCreateUserRequest } from '@/application/domains/users/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';

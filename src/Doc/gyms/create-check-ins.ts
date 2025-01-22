@@ -1,4 +1,4 @@
-import { IDataRequest } from '@/domain/gyms/main';
+import { IDataRequest } from '@/application/domains/gyms/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';

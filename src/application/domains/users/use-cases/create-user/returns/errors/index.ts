@@ -1,3 +1,4 @@
+import { CustomErrorService } from '@/application/@global/class/errors/service';
 import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ITypeMessageGlobal } from '@/application/@global/types/type-message';
 

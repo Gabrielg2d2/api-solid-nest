@@ -1,11 +1,12 @@
-import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
-import { CreateUserDocs } from '@/doc/users/create-user.doc';
-import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
 import {
   IDataAuthenticateRequest,
   IDataCreateUserRequest,
   UsersDomain,
-} from '@/domain/users/main';
+} from '@/application/domains/users/main';
+import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
+import { CreateUserDocs } from '@/doc/users/create-user.doc';
+import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
+
 import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 

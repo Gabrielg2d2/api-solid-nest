@@ -1,4 +1,4 @@
-import { IReturnDefaultDomainGlobal } from '@/domain/@global/types/return-default-domain';
+import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { ICheckIn, IRepositoryCheckIn } from '../../repositories/interface';
 import { ErrorsSuccessFetchHistoryCheckIns } from './returns/errors';
 import { SuccessFetchHistoryCheckIns } from './returns/success';

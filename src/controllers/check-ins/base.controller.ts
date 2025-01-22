@@ -1,5 +1,8 @@
+import {
+  CheckInDomain,
+  IDataCreateRequest,
+} from '@/application/domains/checkins/main';
 import { CreateCheckInsDocs } from '@/doc/checkIns/create-check-ins';
-import { CheckInDomain, IDataCreateRequest } from '@/domain/checkins/main';
 import { Body, Headers, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
