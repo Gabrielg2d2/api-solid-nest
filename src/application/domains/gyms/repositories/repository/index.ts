@@ -1,6 +1,5 @@
-import { AdapterPrisma } from '@/domain/@adapters/repository/prisma';
-
-import { IGymGlobal } from '@/domain/@global/types/gym';
+import { AdapterPrisma } from '@/application/@adapters/repository/prisma';
+import { IGymGlobal } from '@/application/@global/types/gym';
 import { IDataRequest, IRepositoryGyms } from '../interface';
 
 export type { IDataRequest, IGymGlobal };

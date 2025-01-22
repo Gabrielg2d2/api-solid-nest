@@ -1,4 +1,4 @@
-import { IGymGlobal } from '@/domain/@global/types/gym';
+import { IGymGlobal } from '@/application/@global/types/gym';
 import { randomUUID } from 'node:crypto';
 import { IDataRequest, IRepositoryGyms } from '../interface';
 
