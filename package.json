@@ -14,7 +14,7 @@
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "vitest --run",
-    "test:doc": "docker compose up -d && cross-env NODE_ENV=test nest start --watch",
+    "test:doc": "cross-env NODE_ENV=test nest start --watch",
     "test:watch": "vitest --watch",
     "test:cov": "vitest run --coverage",
     "test:ui": "vitest --ui",
