@@ -3,6 +3,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DocModule } from './doc.module';
 import { HttpExceptionFilter } from './filters/http-exception-filter';
+import { ResponseInterceptor } from './filters/response.interceptor';
 
 function getNodeEnv() {
   const key = process.env.NODE_ENV;
@@ -46,6 +47,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
+  app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(port);

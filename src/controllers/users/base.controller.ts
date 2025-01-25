@@ -6,6 +6,7 @@ import {
 import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
 import { CreateUserDocs } from '@/doc/users/create-user.doc';
 import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
+import { Presenter } from '@/presenter';
 
 import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
@@ -22,8 +23,11 @@ export class BaseUsersController {
   ) {
     console.log('Header value: ', headerValue);
 
-    const result = await this.domain.createUser(body);
-    return reply.send(result);
+    const data = await this.domain.createUser(body);
+
+    const response = Presenter.successResponse({ user: data }, 201);
+
+    return reply.status(response.statusCode).send(response);
   }
 
   @Post('/session')
