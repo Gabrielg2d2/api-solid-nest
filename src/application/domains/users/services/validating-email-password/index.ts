@@ -1,4 +1,4 @@
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 
 interface IServiceValidationEmailPassword {
   execute(email: string, password: string): Promise<void>;
@@ -9,8 +9,6 @@ export class ServiceValidationEmailPassword
 {
   async execute(email: string, password: string) {
     if (!email || !password)
-      throw new CustomErrorGlobal({
-        message: 'Error: Invalid content',
-      });
+      throw new CustomException('Email and password are required', 400);
   }
 }

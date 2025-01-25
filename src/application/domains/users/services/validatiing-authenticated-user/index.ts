@@ -1,5 +1,5 @@
 import { AdapterBcryptjs } from '@/application/@adapters/hash/bcryptjs';
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidatingAuthenticatedUser {
@@ -12,9 +12,7 @@ export class ServiceValidatingAuthenticatedUser
   constructor(private readonly adapter = new AdapterBcryptjs()) {}
 
   async execute(user: IUserGlobal | null, password: string) {
-    const customError = new CustomErrorGlobal({
-      message: 'Error: Credentials are invalid',
-    });
+    const customError = new CustomException('Unauthorized', 401);
 
     if (!user?.id) throw customError;
 

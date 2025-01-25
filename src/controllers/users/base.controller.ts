@@ -36,9 +36,11 @@ export class BaseUsersController {
     @Body() body: IDataAuthenticateRequest,
     @Res() reply: Response,
   ) {
-    const result = await this.domain.authenticateUser(body);
+    const data = await this.domain.authenticateUser(body);
 
-    return reply.status(result.statusCode).send(result);
+    const response = Presenter.successResponse({ user: data }, 200);
+
+    return reply.status(response.statusCode).send(response);
   }
 
   @Get('/profile/:userId')
