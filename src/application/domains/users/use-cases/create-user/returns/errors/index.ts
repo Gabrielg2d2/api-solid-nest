@@ -14,7 +14,7 @@ export class ErrorsCreateUser extends Error implements IErrorsCreateUser {
           data: null,
           message: {
             en: 'Invalid content',
-            pt: 'Conteúdo inválido',
+            ptBr: 'Conteúdo inválido',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 400,
@@ -27,7 +27,7 @@ export class ErrorsCreateUser extends Error implements IErrorsCreateUser {
           data: null,
           message: {
             en: 'User already exists',
-            pt: 'Usuário já existe',
+            ptBr: 'Usuário já existe',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 409,

@@ -43,7 +43,7 @@ describe('Create User', () => {
       },
       message: {
         en: 'User created successfully',
-        pt: 'Usuário criado com sucesso',
+        ptBr: 'Usuário criado com sucesso',
       },
       statusCode: 201,
       typeMessage: 'success',
@@ -64,7 +64,7 @@ describe('Create User', () => {
       data: null,
       message: {
         en: 'Service unavailable, try again later',
-        pt: 'Serviço indisponível, tente novamente mais tarde',
+        ptBr: 'Serviço indisponível, tente novamente mais tarde',
       },
       typeMessage: 'fatal',
       statusCode: 500,
@@ -98,7 +98,7 @@ describe('Create User', () => {
     expect(newUser.statusCode).toBe(400);
     expect(newUser).toEqual({
       data: null,
-      message: { en: 'Invalid content', pt: 'Conteúdo inválido' },
+      message: { en: 'Invalid content', ptBr: 'Conteúdo inválido' },
       typeMessage: 'error',
       statusCode: 400,
       error: expect.any(Error),
@@ -115,7 +115,7 @@ describe('Create User', () => {
     expect(newUser.statusCode).toBe(400);
     expect(newUser).toEqual({
       data: null,
-      message: { en: 'Invalid content', pt: 'Conteúdo inválido' },
+      message: { en: 'Invalid content', ptBr: 'Conteúdo inválido' },
       typeMessage: 'error',
       statusCode: 400,
       error: expect.any(Error),
@@ -132,7 +132,7 @@ describe('Create User', () => {
     expect(newUser.statusCode).toBe(400);
     expect(newUser).toEqual({
       data: null,
-      message: { en: 'Invalid content', pt: 'Conteúdo inválido' },
+      message: { en: 'Invalid content', ptBr: 'Conteúdo inválido' },
       typeMessage: 'error',
       statusCode: 400,
       error: expect.any(Error),

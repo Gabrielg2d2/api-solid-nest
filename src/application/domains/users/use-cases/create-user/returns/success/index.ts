@@ -16,7 +16,7 @@ export class SuccessCreateUser implements ISuccessCreateUser {
       data: newUser,
       message: {
         en: 'User created successfully',
-        pt: 'Usuário criado com sucesso',
+        ptBr: 'Usuário criado com sucesso',
       },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 201,

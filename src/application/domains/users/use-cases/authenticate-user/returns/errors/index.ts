@@ -17,7 +17,7 @@ export class ErrorsAuthenticateUser
           data: null,
           message: {
             en: 'Credentials are invalid',
-            pt: 'Credenciais inválidas',
+            ptBr: 'Credenciais inválidas',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 401,
@@ -32,7 +32,7 @@ export class ErrorsAuthenticateUser
           data: null,
           message: {
             en: 'E-mail and password required',
-            pt: 'E-mail e senha obrigatórios',
+            ptBr: 'E-mail e senha obrigatórios',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 400,

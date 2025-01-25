@@ -23,7 +23,16 @@ export class BaseUsersController {
     console.log('Header value: ', headerValue);
     const result = await this.domain.createUser(body);
 
-    return reply.status(result.statusCode).send(result);
+    const data = {
+      data: result.data,
+      statusCode: 201,
+      message: {
+        ptBr: 'Usuário criado com sucesso',
+        en: 'User created successfully',
+      },
+    };
+
+    return reply.send(data);
   }
 
   @Post('/session')

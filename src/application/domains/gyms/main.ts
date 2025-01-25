@@ -23,6 +23,6 @@ export class GymsDomain implements IGymsDomain {
   }
 
   async findGym(gymId: string) {
-    return await new FindGymUseCase(this.repository).findGym(gymId);
+    return await new FindGymUseCase(this.repository).execute(gymId);
   }
 }

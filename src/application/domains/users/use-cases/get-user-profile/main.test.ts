@@ -43,7 +43,7 @@ describe('GetProfileUseCase', () => {
       },
       message: {
         en: 'User found successfully',
-        pt: 'Usuário encontrado com sucesso',
+        ptBr: 'Usuário encontrado com sucesso',
       },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 200,
@@ -58,7 +58,7 @@ describe('GetProfileUseCase', () => {
       data: null,
       message: {
         en: 'User not found',
-        pt: 'Usuário não encontrado',
+        ptBr: 'Usuário não encontrado',
       },
       typeMessage: ITypeMessageGlobal.ERROR,
       statusCode: 404,
@@ -75,7 +75,7 @@ describe('GetProfileUseCase', () => {
       data: null,
       message: {
         en: 'Service unavailable, try again later',
-        pt: 'Serviço indisponível, tente novamente mais tarde',
+        ptBr: 'Serviço indisponível, tente novamente mais tarde',
       },
       typeMessage: ITypeMessageGlobal.FATAL,
       statusCode: 500,

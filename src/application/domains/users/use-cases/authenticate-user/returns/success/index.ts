@@ -25,7 +25,7 @@ export class SuccessAuthenticateUser implements ISuccessAuthenticateUser {
       },
       message: {
         en: 'User authenticated successfully',
-        pt: 'Usuário autenticado com sucesso',
+        ptBr: 'Usuário autenticado com sucesso',
       },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 200,

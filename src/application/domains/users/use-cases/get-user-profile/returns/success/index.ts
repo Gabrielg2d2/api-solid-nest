@@ -25,7 +25,7 @@ export class SuccessGetProfile implements ISuccessGetProfileResponse {
       },
       message: {
         en: 'User found successfully',
-        pt: 'Usuário encontrado com sucesso',
+        ptBr: 'Usuário encontrado com sucesso',
       },
       typeMessage: ITypeMessageGlobal.SUCCESS,
       statusCode: 200,

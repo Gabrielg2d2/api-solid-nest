@@ -64,7 +64,7 @@ describe('CreateGymUseCase', () => {
       },
       message: {
         en: 'Gym created successfully',
-        pt: 'Academia criada com sucesso',
+        ptBr: 'Academia criada com sucesso',
       },
       typeMessage: 'success',
       statusCode: 201,
@@ -87,7 +87,7 @@ describe('CreateGymUseCase', () => {
       data: null,
       message: {
         en: 'Service unavailable, try again later',
-        pt: 'Serviço indisponível, tente novamente mais tarde',
+        ptBr: 'Serviço indisponível, tente novamente mais tarde',
       },
       typeMessage: 'fatal',
       statusCode: 500,

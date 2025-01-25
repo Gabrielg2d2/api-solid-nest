@@ -89,7 +89,7 @@ describe('CreateCheckInUseCase', () => {
       },
       message: {
         en: 'Check-in created successfully',
-        pt: 'Check-in criado com sucesso',
+        ptBr: 'Check-in criado com sucesso',
       },
       typeMessage: 'success',
       statusCode: 201,
@@ -111,7 +111,7 @@ describe('CreateCheckInUseCase', () => {
       data: null,
       message: {
         en: 'Service unavailable, try again later',
-        pt: 'Serviço indisponível, tente novamente mais tarde',
+        ptBr: 'Serviço indisponível, tente novamente mais tarde',
       },
       typeMessage: 'fatal',
       error: expect.any(String),
@@ -140,7 +140,7 @@ describe('CreateCheckInUseCase', () => {
       data: null,
       message: {
         en: 'You have already checked in today',
-        pt: 'Você já fez check-in hoje',
+        ptBr: 'Você já fez check-in hoje',
       },
       typeMessage: 'warning',
       statusCode: 400,
@@ -179,7 +179,7 @@ describe('CreateCheckInUseCase', () => {
       },
       message: {
         en: 'Check-in created successfully',
-        pt: 'Check-in criado com sucesso',
+        ptBr: 'Check-in criado com sucesso',
       },
       typeMessage: 'success',
       statusCode: 201,
@@ -209,7 +209,7 @@ describe('CreateCheckInUseCase', () => {
       data: null,
       message: {
         en: 'You are not close to the gym',
-        pt: 'Você não está próximo a academia',
+        ptBr: 'Você não está próximo a academia',
       },
       typeMessage: 'warning',
       statusCode: 400,

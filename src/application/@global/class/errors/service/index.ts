@@ -21,7 +21,7 @@ export class CustomErrorService {
       data: null,
       message: {
         en: 'Service unavailable, try again later',
-        pt: 'Serviço indisponível, tente novamente mais tarde',
+        ptBr: 'Serviço indisponível, tente novamente mais tarde',
       },
       typeMessage: ITypeMessageGlobal.FATAL,
       statusCode: 500,

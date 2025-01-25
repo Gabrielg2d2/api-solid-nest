@@ -14,7 +14,7 @@ export class ErrorsGetProfile extends Error implements IErrorsGetProfile {
           data: null,
           message: {
             en: 'User not found',
-            pt: 'Usuário não encontrado',
+            ptBr: 'Usuário não encontrado',
           },
           typeMessage: ITypeMessageGlobal.ERROR,
           statusCode: 404,
