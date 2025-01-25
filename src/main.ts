@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DocModule } from './doc.module';
+import { HttpExceptionFilter } from './filters/http-exception-filter';
 
 function getNodeEnv() {
   const key = process.env.NODE_ENV;
@@ -44,6 +45,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(port);
 }

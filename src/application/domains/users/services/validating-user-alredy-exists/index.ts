@@ -1,4 +1,4 @@
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidationUserAlreadyExists {
@@ -10,9 +10,7 @@ export class ServiceValidationUserAlreadyExists
 {
   async execute(user: IUserGlobal | null) {
     if (user) {
-      throw new CustomErrorGlobal({
-        message: 'Error: User already exists',
-      });
+      throw new CustomException('User already exists', 400);
     }
   }
 }
