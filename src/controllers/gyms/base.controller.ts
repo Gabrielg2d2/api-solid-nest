@@ -1,6 +1,7 @@
 import { GymsDomain, IDataRequest } from '@/application/domains/gyms/main';
 import { CreateGymsDocs } from '@/doc/gyms/create-check-ins';
 import { GetGymsDocs } from '@/doc/gyms/get-gym-check-ins';
+import { Presenter } from '@/presenter';
 import { Body, Get, Headers, Param, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
 
@@ -15,9 +16,11 @@ export class BaseGymsController {
     @Res() reply: Response,
   ) {
     console.log('Header value: ', headerValue);
-    const result = await this.domain.create(body);
+    const data = await this.domain.create(body);
 
-    return reply.status(result.statusCode).send(result);
+    const response = Presenter.successResponse({ gym: data }, 201);
+
+    return reply.status(response.statusCode).send(response);
   }
 
   @Get('/gyms/:id')
@@ -28,8 +31,10 @@ export class BaseGymsController {
     @Res() reply: Response,
   ) {
     console.log('Header value: ', headerValue);
-    const result = await this.domain.findGym(id);
+    const data = await this.domain.findGym(id);
 
-    return reply.status(result.statusCode).send(result);
+    const response = Presenter.successResponse({ gym: data }, 200);
+
+    return reply.status(response.statusCode).send(response);
   }
 }

@@ -6,14 +6,12 @@ import {
 } from './use-cases/create-gym/main';
 import { FindGymUseCase, IReturnFindGym } from './use-cases/find-gym/main';
 
-type IFindGym = (gymId: string) => Promise<IReturnFindGym>;
-
 interface IGymsDomain {
-  create(data: IDataRequest): Promise<IReturnCheckInCreate>;
-  findGym: IFindGym;
+  create(data: IDataRequest): IReturnCheckInCreate;
+  findGym(gymId: string): IReturnFindGym;
 }
 
-export type { IDataRequest, IFindGym, IReturnCheckInCreate };
+export type { IDataRequest, IReturnCheckInCreate };
 
 export class GymsDomain implements IGymsDomain {
   constructor(private repository: IRepositoryGyms) {}
