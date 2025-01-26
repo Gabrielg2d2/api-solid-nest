@@ -18,9 +18,9 @@ export class BaseCheckInsController {
     @Res() reply: Response,
   ) {
     console.log('Header value: ', headerValue);
-    const result = await this.domain.create(body);
+    const data = await this.domain.create(body);
 
-    return reply.status(result.statusCode).send(result);
+    return reply.send(data);
   }
 
   @Get('/history-check-ins/:userId')
@@ -29,8 +29,8 @@ export class BaseCheckInsController {
     @Param('userId') userId: string,
     @Res() reply: Response,
   ) {
-    const result = await this.domain.fetchHistoryCheckIns(userId);
+    const data = await this.domain.fetchHistoryCheckIns(userId);
 
-    return reply.status(result.statusCode).send(result);
+    return reply.send(data);
   }
 }

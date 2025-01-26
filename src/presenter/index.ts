@@ -16,4 +16,21 @@ export class Presenter {
       statusCode,
     };
   }
+
+  static errorResponse(
+    message: string,
+    statusCode: number,
+    error: any,
+    timestamp: string,
+    path: string,
+  ) {
+    return {
+      success: false,
+      message,
+      error,
+      statusCode,
+      timestamp,
+      path,
+    };
+  }
 }

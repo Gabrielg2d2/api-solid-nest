@@ -1,5 +1,5 @@
 import { GymsDomain } from '../gyms/main';
-import { IRepositoryCheckIn } from './repositories/interface';
+import { ICheckIn, IRepositoryCheckIn } from './repositories/interface';
 import {
   CreateCheckInUseCase,
   IDataCreateRequest,
@@ -8,8 +8,8 @@ import {
 import { FetchHistoryCheckInsUseCase } from './use-cases/fetch-history-check-ins/main';
 
 interface ICheckInDomain {
-  create(data: IDataCreateRequest): Promise<IReturnCheckInCreate>;
-  fetchHistoryCheckIns(userId: string): Promise<any>;
+  create(data: IDataCreateRequest): IReturnCheckInCreate;
+  fetchHistoryCheckIns(userId: string): Promise<ICheckIn[]>;
 }
 
 export type { IDataCreateRequest, IReturnCheckInCreate };

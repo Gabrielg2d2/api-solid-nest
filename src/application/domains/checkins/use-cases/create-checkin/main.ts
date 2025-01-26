@@ -1,20 +1,15 @@
 import { ICheckIn, IDataCreateRequest } from '../../repositories/repository';
 import { ServiceCheckInAlreadyExistsToday } from '../../services/check-in-already-exists-today';
 
-import { IReturnDefaultDomainGlobal } from '@/application/@global/types/return-default-domain';
 import { GymsDomain } from '@/application/domains/gyms/main';
 import { IRepositoryCheckIn } from '../../repositories/interface';
 import { ServiceCheckUserWithinAllowedSpace } from '../../services/check-user-within-allowed-space';
 import { ServiceGymExists } from '../../services/gym-exists';
-import { ReturnError } from './returns/errors';
-import { ReturnSuccess } from './returns/success';
 
-type IReturnCheckInCreate = IReturnDefaultDomainGlobal<{
-  checkIn: ICheckIn;
-} | null>;
+type IReturnCheckInCreate = Promise<ICheckIn>;
 
 interface ICreateCheckInUseCase {
-  execute(data: IDataCreateRequest): Promise<IReturnCheckInCreate>;
+  execute(data: IDataCreateRequest): IReturnCheckInCreate;
 }
 
 export type { IDataCreateRequest, IReturnCheckInCreate };
@@ -26,31 +21,27 @@ export class CreateCheckInUseCase implements ICreateCheckInUseCase {
   ) {}
 
   async execute(data: IDataCreateRequest) {
-    try {
-      const checkInOnSomeDate = await this.repository.findByUserIdOnDate(
-        data.userId,
-        new Date(),
-      );
+    const checkInOnSomeDate = await this.repository.findByUserIdOnDate(
+      data.userId,
+      new Date(),
+    );
 
-      const result = await this.domainGyms.findGym(data.gymId);
+    const result = await this.domainGyms.findGym(data.gymId);
 
-      const gym = await new ServiceGymExists().execute(result.data?.gym);
+    const gym = await new ServiceGymExists().execute(result);
 
-      await new ServiceCheckUserWithinAllowedSpace().execute(
-        {
-          latitude: data.userLatitude,
-          longitude: data.userLongitude,
-        },
-        { latitude: gym.latitude, longitude: gym.longitude },
-      );
+    await new ServiceCheckUserWithinAllowedSpace().execute(
+      {
+        latitude: data.userLatitude,
+        longitude: data.userLongitude,
+      },
+      { latitude: gym.latitude, longitude: gym.longitude },
+    );
 
-      await new ServiceCheckInAlreadyExistsToday().execute(checkInOnSomeDate);
+    await new ServiceCheckInAlreadyExistsToday().execute(checkInOnSomeDate);
 
-      const checkIn = await this.repository.create(data);
+    const checkIn = await this.repository.create(data);
 
-      return await new ReturnSuccess().execute(checkIn);
-    } catch (error) {
-      return await new ReturnError().execute(error);
-    }
+    return checkIn;
   }
 }

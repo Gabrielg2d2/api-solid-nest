@@ -1,3 +1,4 @@
+import { Presenter } from '@/presenter';
 import {
   ArgumentsHost,
   Catch,
@@ -32,11 +33,14 @@ export class HttpExceptionFilter implements ExceptionFilter {
       exception instanceof Error ? exception.stack : '',
     );
 
-    response.status(status).json({
-      statusCode: status,
-      timestamp: new Date().toISOString(),
-      path: request.url,
-      message,
-    });
+    const errorResponse = Presenter.errorResponse(
+      typeof message === 'string' ? message : JSON.stringify(message),
+      status,
+      exception,
+      new Date().toISOString(),
+      request.url,
+    );
+
+    response.status(status).json(errorResponse);
   }
 }
