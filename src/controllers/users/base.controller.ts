@@ -20,7 +20,11 @@ export class BaseUsersController {
   ) {
     console.log('Header value: ', headerValue);
 
-    return await this.domain.createUser(body);
+    const data = await this.domain.createUser(body);
+
+    return {
+      user: data,
+    };
   }
 
   @Post('/session')
