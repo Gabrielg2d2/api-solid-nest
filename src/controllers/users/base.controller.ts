@@ -18,13 +18,10 @@ export class BaseUsersController {
   async create(
     @Headers('header') headerValue = 'default-value',
     @Body() body: IDataCreateUserRequest,
-    @Res() reply: Response,
   ) {
     console.log('Header value: ', headerValue);
 
-    const data = await this.domain.createUser(body);
-
-    return reply.send(data);
+    return await this.domain.createUser(body);
   }
 
   @Post('/session')
@@ -40,9 +37,7 @@ export class BaseUsersController {
 
   @Get('/profile/:userId')
   @ProfileUserDocs()
-  async getProfile(@Param('userId') userId: string, @Res() reply: Response) {
-    const data = await this.domain.getProfile(userId);
-
-    return reply.send(data);
+  async getProfile(@Param('userId') userId: string) {
+    return await this.domain.getProfile(userId);
   }
 }
