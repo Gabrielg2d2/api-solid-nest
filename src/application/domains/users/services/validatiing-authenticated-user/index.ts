@@ -14,7 +14,7 @@ export class ServiceValidatingAuthenticatedUser
   async execute(user: IUserGlobal | null, password: string) {
     const customError = new CustomException('Unauthorized', 401);
 
-    if (!user?.id) throw customError;
+    if (!user?.id || !user.password_hash) throw customError;
 
     const isPasswordValid = await this.adapter.bcryptjs.compare(
       password,
