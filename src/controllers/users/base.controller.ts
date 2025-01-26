@@ -30,12 +30,20 @@ export class BaseUsersController {
   @Post('/session')
   @AuthenticateUserDocs()
   async authenticate(@Body() body: IDataAuthenticateRequest) {
-    return await this.domain.authenticateUser(body);
+    const data = await this.domain.authenticateUser(body);
+
+    return {
+      user: data,
+    };
   }
 
   @Get('/profile/:userId')
   @ProfileUserDocs()
   async getProfile(@Param('userId') userId: string) {
-    return await this.domain.getProfile(userId);
+    const data = await this.domain.getProfile(userId);
+
+    return {
+      user: data,
+    };
   }
 }
