@@ -17,7 +17,10 @@ import {
 export type { IDataAuthenticateRequest, IDataCreateUserRequest };
 
 interface IUsersDomain {
-  createUser(body: IDataCreateUserRequest): IReturnCreateUserUseCase;
+  createUser(
+    header: string,
+    body: IDataCreateUserRequest,
+  ): IReturnCreateUserUseCase;
   authenticateUser(body: IDataAuthenticateRequest): IReturnAuthenticateUser;
   getProfile(userId: string): IReturnDefaultGetProfile;
 }
@@ -25,7 +28,12 @@ interface IUsersDomain {
 export class UsersDomain implements IUsersDomain {
   constructor(private readonly repository: IRepositoryUsers) {}
 
-  async createUser(body: IDataCreateUserRequest) {
+  async setHeader(header: string) {
+    await this.repository.setHeader(header);
+  }
+
+  async createUser(header: string, body: IDataCreateUserRequest) {
+    await this.repository.setHeader(header);
     return await new CreateUserUseCase(this.repository).execute(body);
   }
 
