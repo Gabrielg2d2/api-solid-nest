@@ -11,22 +11,15 @@ import {
 } from './use-cases/create-user/main';
 import {
   GetProfileUseCase,
-  IDataRequest as IDataGetProfileRequest,
-  IDataResponse as IDataGetProfileResponse,
   IReturnDefaultGetProfile,
 } from './use-cases/get-user-profile/main';
 
-export type {
-  IDataAuthenticateRequest,
-  IDataCreateUserRequest,
-  IDataGetProfileRequest,
-  IDataGetProfileResponse,
-};
+export type { IDataAuthenticateRequest, IDataCreateUserRequest };
 
 interface IUsersDomain {
   createUser(body: IDataCreateUserRequest): IReturnCreateUserUseCase;
   authenticateUser(body: IDataAuthenticateRequest): IReturnAuthenticateUser;
-  getProfile(body: IDataGetProfileRequest): IReturnDefaultGetProfile;
+  getProfile(userId: string): IReturnDefaultGetProfile;
 }
 
 export class UsersDomain implements IUsersDomain {
@@ -40,7 +33,7 @@ export class UsersDomain implements IUsersDomain {
     return await new AuthenticateUserUseCase(this.repository).execute(body);
   }
 
-  async getProfile(body: IDataGetProfileRequest) {
-    return await new GetProfileUseCase(this.repository).execute(body);
+  async getProfile(userId: string) {
+    return await new GetProfileUseCase(this.repository).execute(userId);
   }
 }

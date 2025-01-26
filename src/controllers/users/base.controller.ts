@@ -46,10 +46,10 @@ export class BaseUsersController {
   @Get('/profile/:userId')
   @ProfileUserDocs()
   async getProfile(@Param('userId') userId: string, @Res() reply: Response) {
-    const result = await this.domain.getProfile({
-      userId: userId,
-    });
+    const data = await this.domain.getProfile(userId);
 
-    return reply.status(result.statusCode).send(result);
+    const response = Presenter.successResponse({ user: data }, 200);
+
+    return reply.status(response.statusCode).send(response);
   }
 }
