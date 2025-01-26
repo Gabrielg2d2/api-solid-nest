@@ -20,14 +20,13 @@ export class Presenter {
   static errorResponse(
     message: string,
     statusCode: number,
-    error: any,
     timestamp: string,
     path: string,
   ) {
     return {
       success: false,
       message,
-      error,
+      data: null,
       statusCode,
       timestamp,
       path,

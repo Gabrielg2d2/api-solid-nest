@@ -24,19 +24,18 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     const message =
       exception instanceof HttpException
-        ? exception.getResponse()
+        ? exception.message
         : 'Internal server error';
 
     // TODO: Implement a better logging system here
     this.logger.error(
-      `HTTP Status: ${status} Error Message: ${JSON.stringify(message)}`,
+      `HTTP Status: ${status} Error Message: ${message}`,
       exception instanceof Error ? exception.stack : '',
     );
 
     const errorResponse = Presenter.errorResponse(
-      typeof message === 'string' ? message : JSON.stringify(message),
+      message,
       status,
-      exception,
       new Date().toISOString(),
       request.url,
     );
