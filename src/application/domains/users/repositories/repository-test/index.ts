@@ -5,6 +5,7 @@ import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 
 export class RepositoryUserTest implements IRepositoryUsers {
   private static instance: RepositoryUserTest;
+  private headers: string[] = [];
   private users: IUserGlobal[] = [
     {
       id: '123123123',
@@ -25,9 +26,17 @@ export class RepositoryUserTest implements IRepositoryUsers {
     return RepositoryUserTest.instance;
   }
 
+  async setHeader(header: string) {
+    this.headers.push(header);
+  }
+
   // TODO: DOC APENAS SWAGGER
   async clearAllUsers() {
     this.users = [];
+  }
+
+  async getHeader() {
+    return this.headers;
   }
 
   // TODO: DOC APENAS SWAGGER
