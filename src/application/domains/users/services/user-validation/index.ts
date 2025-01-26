@@ -1,4 +1,4 @@
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceUserValidation {
@@ -8,9 +8,7 @@ interface IServiceUserValidation {
 export class ServiceUserValidation implements IServiceUserValidation {
   async execute(user: IUserGlobal | null) {
     if (!user?.id || !user?.name || !user?.email || !user?.password_hash) {
-      throw new CustomErrorGlobal({
-        message: 'Error: User not found',
-      });
+      throw new CustomException('User not found', 404);
     }
   }
 }

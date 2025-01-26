@@ -1,11 +1,8 @@
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { IGymGlobal } from '../../repositories/repository';
 
 export class ServiceGymAlreadyExistsError {
   async execute(gym: IGymGlobal | null) {
-    if (!gym?.id)
-      throw new CustomErrorGlobal({
-        message: 'Error: Gym not found',
-      });
+    if (!gym?.id) throw new CustomException('Gym not found', 400);
   }
 }

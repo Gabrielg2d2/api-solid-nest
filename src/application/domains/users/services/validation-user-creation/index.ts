@@ -1,5 +1,5 @@
 import { AdapterZod } from '@/application/@adapters/validation/zod';
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 
 type IDataRequest = {
   name: string;
@@ -26,10 +26,7 @@ export class ServiceValidationCreateUser
     const isBodyValid = this.registerBodySchema.safeParse(body);
 
     if (!isBodyValid.success) {
-      throw new CustomErrorGlobal({
-        message: 'Error: Invalid content',
-        details: isBodyValid.error.formErrors.fieldErrors,
-      });
+      throw new CustomException('Invalid content', 400);
     }
   }
 }

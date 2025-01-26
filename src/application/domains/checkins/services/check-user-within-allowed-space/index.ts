@@ -1,4 +1,4 @@
-import { CustomErrorGlobal } from '@/application/@global/class/errors/custom';
+import { CustomException } from '@/application/@exception/custom-exception';
 
 export type ICoordinate = {
   latitude: number;
@@ -45,14 +45,10 @@ export class ServiceCheckUserWithinAllowedSpace
   async execute(from: ICoordinate, to: ICoordinate) {
     const distance = getDistanceBetweenCoordinates(from, to);
 
-    console.log('distance ==> ', distance);
-
     const MAX_DISTANCE_IN_KILOMETERS = 0.1;
 
     if (distance > MAX_DISTANCE_IN_KILOMETERS) {
-      throw new CustomErrorGlobal({
-        message: 'Error: You are not close to the gym',
-      });
+      throw new CustomException('You are not close to the gym', 400);
     }
   }
 }
