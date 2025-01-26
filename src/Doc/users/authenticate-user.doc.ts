@@ -1,6 +1,6 @@
 import { IDataAuthenticateRequest } from '@/application/domains/users/main';
 import { applyDecorators } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
 const AuthenticateUserDto = useGenerateDoc<IDataAuthenticateRequest>(
@@ -14,6 +14,11 @@ const AuthenticateUserDto = useGenerateDoc<IDataAuthenticateRequest>(
 export function AuthenticateUserDocs() {
   return applyDecorators(
     ApiOperation({ summary: 'Authenticate user' }),
+    ApiHeader({
+      name: 'header',
+      description: 'Description header',
+      required: false,
+    }),
     ApiBody({ type: AuthenticateUserDto }),
     ApiResponse({
       status: 200,

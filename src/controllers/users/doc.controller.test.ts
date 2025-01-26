@@ -15,6 +15,16 @@ export class DocUsersController extends BaseUsersController {
     this.domain = FactoryUsersDomainTest.create();
   }
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
+  @Get('/auxiliary-fetch-header')
+  async fetchHeader(@Res() reply: Response) {
+    const repository = this.repository;
+    const result = await repository.getHeader();
+
+    return reply.status(200).send({
+      header: result,
+    });
+  }
+
   @Get('/auxiliary-route-clear-all')
   async clear(@Res() reply: Response) {
     const repository = this.repository;

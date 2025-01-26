@@ -18,9 +18,7 @@ export class BaseUsersController {
     @Headers('header') headerValue = 'default-value',
     @Body() body: IDataCreateUserRequest,
   ) {
-    console.log('Header value: ', headerValue);
-
-    const data = await this.domain.createUser(body);
+    const data = await this.domain.createUser(headerValue, body);
 
     return {
       user: data,
@@ -29,7 +27,11 @@ export class BaseUsersController {
 
   @Post('/session')
   @AuthenticateUserDocs()
-  async authenticate(@Body() body: IDataAuthenticateRequest) {
+  async authenticate(
+    @Headers('header') headerValue = 'default-value-123',
+    @Body() body: IDataAuthenticateRequest,
+  ) {
+    await this.domain.setHeader(headerValue);
     const data = await this.domain.authenticateUser(body);
 
     return {
