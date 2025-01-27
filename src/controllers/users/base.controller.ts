@@ -3,6 +3,7 @@ import {
   IDataCreateUserRequest,
   UsersDomain,
 } from '@/application/domains/users/main';
+import { SetHeader } from '@/decorators/set-header-domain';
 import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
 import { CreateUserDocs } from '@/doc/users/create-user.doc';
 import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
@@ -28,10 +29,11 @@ export class BaseUsersController {
   @Post('/session')
   @AuthenticateUserDocs()
   async authenticate(
-    @Headers('header') headerValue = 'default-value-123',
-    @Body() body: IDataAuthenticateRequest,
+    @SetHeader()
+    @Body()
+    body: IDataAuthenticateRequest,
   ) {
-    await this.domain.setHeader(headerValue);
+    // await this.domain.setHeader(headerValue);
     const data = await this.domain.authenticateUser(body);
 
     return {
