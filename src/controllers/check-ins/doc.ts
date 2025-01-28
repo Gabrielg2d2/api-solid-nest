@@ -1,4 +1,4 @@
-import { FactoryCheckInsDomainTest } from '@/application/factories/checkins/doc';
+import { FactoryCheckInsDomainDoc } from '@/application/factories/checkins/doc';
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BaseCheckInsController } from './base.controller';
@@ -8,6 +8,6 @@ import { BaseCheckInsController } from './base.controller';
 export class DocCheckInsController extends BaseCheckInsController {
   constructor() {
     super();
-    this.domain = FactoryCheckInsDomainTest.create();
+    this.domain = FactoryCheckInsDomainDoc.create();
   }
 }

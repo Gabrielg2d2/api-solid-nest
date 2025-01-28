@@ -1,5 +1,5 @@
 import { RepositoryUserTest } from '@/application/domains/users/repositories/doc';
-import { FactoryUsersDomainTest } from '@/application/factories/users/doc';
+import { FactoryUsersDomainDoc } from '@/application/factories/users/doc';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
@@ -12,7 +12,7 @@ export class DocUsersController extends BaseUsersController {
 
   constructor() {
     super();
-    this.domain = FactoryUsersDomainTest.create();
+    this.domain = FactoryUsersDomainDoc.create();
   }
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
   @Get('/auxiliary-fetch-header')

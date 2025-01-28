@@ -3,7 +3,7 @@ import { RepositoryCheckInTest } from '../../domains/checkins/repositories/doc';
 import { GymsDomain } from '../../domains/gyms/main';
 import { RepositoryGymsTest } from '../../domains/gyms/repositories/doc';
 
-export class FactoryCheckInsDomainTest {
+export class FactoryCheckInsDomainDoc {
   static create() {
     const repositoryCheckIns = RepositoryCheckInTest.getInstance();
     const repositoryGyms = RepositoryGymsTest.getInstance();

@@ -1,5 +1,5 @@
 import { RepositoryGymsTest } from '@/application/domains/gyms/repositories/doc';
-import { FactoryGymsDomainTest } from '@/application/factories/gyms/doc';
+import { FactoryGymsDomainDoc } from '@/application/factories/gyms/doc';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
@@ -12,7 +12,7 @@ export class DocGymsController extends BaseGymsController {
 
   constructor() {
     super();
-    this.domain = FactoryGymsDomainTest.create();
+    this.domain = FactoryGymsDomainDoc.create();
   }
 
   // TODO: APENAS DOCUMENTAÇÃO - INICIO
