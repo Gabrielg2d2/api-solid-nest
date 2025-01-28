@@ -22,6 +22,7 @@ export class Presenter {
     statusCode: number,
     timestamp: string,
     path: string,
+    details?: any,
   ) {
     return {
       success: false,
@@ -30,6 +31,7 @@ export class Presenter {
       statusCode,
       timestamp,
       path,
+      details,
     };
   }
 }
