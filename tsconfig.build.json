@@ -4,9 +4,10 @@
     "node_modules",
     "test",
     "dist",
+    "doc",
+    "**/doc.ts",
     "**/*spec.ts",
     "**/*test.ts",
-    "**/*.e2e-spec.ts",
-    "**/doc.ts"
+    "**/*.e2e-spec.ts"
   ]
 }
