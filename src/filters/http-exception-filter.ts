@@ -1,6 +1,7 @@
 import { Presenter } from '@/presenter';
 import {
   ArgumentsHost,
+  BadRequestException,
   Catch,
   ExceptionFilter,
   HttpException,
@@ -38,6 +39,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
       status,
       new Date().toISOString(),
       request.url,
+      exception instanceof BadRequestException
+        ? exception.getResponse()
+        : undefined,
     );
 
     response.status(status).json(errorResponse);
