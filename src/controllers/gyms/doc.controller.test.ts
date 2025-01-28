@@ -1,5 +1,5 @@
 import { RepositoryGymsTest } from '@/application/domains/gyms/repositories/repository-test';
-import { FactoryGymsDomainTest } from '@/application/factories/Gyms/domain.test';
+import { FactoryGymsDomainTest } from '@/application/factories/gyms/doc';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';

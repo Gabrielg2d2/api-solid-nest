@@ -1,4 +1,4 @@
-import { FactoryCheckInsDomainTest } from '@/application/factories/checkins/domain.test';
+import { FactoryCheckInsDomainTest } from '@/application/factories/checkins/doc';
 import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BaseCheckInsController } from './base.controller';
