@@ -13,6 +13,14 @@ export class RepositoryGymsTest implements IRepositoryGyms {
       longitude: 100,
       description: 'Description Test',
     },
+    {
+      id: 'test-id',
+      title: 'Gym Test 2',
+      phone: '123456789',
+      latitude: 200,
+      longitude: 200,
+      description: 'Description Test 2',
+    },
   ];
 
   private constructor() {}

@@ -15,6 +15,15 @@ export class RepositoryUserTest implements IRepositoryUsers {
         '$2a$06$NKPokWEEGykqDgrEqVnxge5q8xhKnCI7UfayPjdHZHJnovITMZE1y', // 123456
       created_at: new Date(),
     },
+
+    {
+      id: 'test-id',
+      name: 'Test User',
+      email: 'test@gmail.com',
+      password_hash:
+        '$2a$06$NKPokWEEGykqDgrEqVnxge5q8xhKnCI7UfayPjdHZHJnovITMZE1y', // 123456
+      created_at: new Date('2025-09-01T00:00:00.000Z'),
+    },
   ];
 
   private constructor() {}
@@ -62,16 +71,7 @@ export class RepositoryUserTest implements IRepositoryUsers {
   }
 
   async getUserByEmail(email: string) {
-    try {
-      const result = this.users.find((user) => user.email === email);
-      if (!result) {
-        return null;
-      }
-
-      return result;
-    } catch (error) {
-      throw new Error('RepositoryUserTest: Error to get user by email');
-    }
+    return this.users.find((user) => user.email === email) || null;
   }
 
   async createUser(data: IRequestCreateUser) {

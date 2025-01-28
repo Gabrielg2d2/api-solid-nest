@@ -26,6 +26,9 @@ export class CreateCheckInUseCase implements ICreateCheckInUseCase {
       new Date(),
     );
 
+    // TODO: Refactor this to a service
+    if (!data.userId) throw new Error('User not found');
+
     const result = await this.domainGyms.findGym(data.gymId);
 
     const gym = await new ServiceGymExists().execute(result);

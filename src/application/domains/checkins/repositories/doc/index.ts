@@ -6,6 +6,13 @@ export class RepositoryCheckInTest implements IRepositoryCheckIn {
   private static instance: RepositoryCheckInTest;
   private listCheckIn: ICheckIn[] = [
     {
+      id: 'test-id',
+      created_at: new Date('2025-09-01T00:00:00.000Z'),
+      user_id: 'test-id',
+      gym_id: 'test-id',
+      validated_at: null,
+    },
+    {
       id: randomUUID(),
       created_at: new Date(),
       user_id: '123123123',
