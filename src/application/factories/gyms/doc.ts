@@ -1,5 +1,5 @@
 import { GymsDomain } from '../../domains/gyms/main';
-import { RepositoryGymsTest } from '../../domains/gyms/repositories/repository-test';
+import { RepositoryGymsTest } from '../../domains/gyms/repositories/doc';
 
 export class FactoryGymsDomainTest {
   static create() {

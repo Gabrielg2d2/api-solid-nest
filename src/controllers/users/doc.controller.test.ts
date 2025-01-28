@@ -1,4 +1,4 @@
-import { RepositoryUserTest } from '@/application/domains/users/repositories/repository-test';
+import { RepositoryUserTest } from '@/application/domains/users/repositories/doc';
 import { FactoryUsersDomainTest } from '@/application/factories/users/doc';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';

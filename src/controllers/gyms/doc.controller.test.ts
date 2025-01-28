@@ -1,4 +1,4 @@
-import { RepositoryGymsTest } from '@/application/domains/gyms/repositories/repository-test';
+import { RepositoryGymsTest } from '@/application/domains/gyms/repositories/doc';
 import { FactoryGymsDomainTest } from '@/application/factories/gyms/doc';
 import { Controller, Get, Res } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';

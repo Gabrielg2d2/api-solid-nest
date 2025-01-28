@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, test, vitest } from 'vitest';
+import { RepositoryUserTest } from '../../repositories/doc';
 import { RepositoryUsers } from '../../repositories/repository';
-import { RepositoryUserTest } from '../../repositories/repository-test';
 import { CreateUserUseCase } from './main';
 
 class makeSutCreateUserUseCase {

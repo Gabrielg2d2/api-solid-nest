@@ -1,5 +1,5 @@
 import { UsersDomain } from '../../domains/users/main';
-import { RepositoryUserTest } from '../../domains/users/repositories/repository-test';
+import { RepositoryUserTest } from '../../domains/users/repositories/doc';
 
 export class FactoryUsersDomainTest {
   static create() {
