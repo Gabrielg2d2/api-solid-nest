@@ -1,14 +1,24 @@
-import {
-  IDataAuthenticateRequest,
-  IDataCreateUserRequest,
-  UsersDomain,
-} from '@/application/domains/users/main';
-import { SetHeader } from '@/decorators/set-header-domain';
+import { UsersDomain } from '@/application/domains/users/main';
 import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
 import { CreateUserDocs } from '@/doc/users/create-user.doc';
 import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
-
+import { ZodValidationPipe } from '@/validations/zod-validation.pipe';
 import { Body, Get, Headers, Param, Post } from '@nestjs/common';
+import { z } from 'zod';
+
+export const CreateUserSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+export const AuthenticateUserSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+});
+
+export type CreateUserDto = z.infer<typeof CreateUserSchema>;
+export type AuthenticateUserDto = z.infer<typeof AuthenticateUserSchema>;
 
 export class BaseUsersController {
   protected domain!: UsersDomain;
@@ -17,7 +27,7 @@ export class BaseUsersController {
   @CreateUserDocs()
   async create(
     @Headers('header') headerValue = 'default-value',
-    @Body() body: IDataCreateUserRequest,
+    @Body(new ZodValidationPipe(CreateUserSchema)) body: CreateUserDto,
   ) {
     const data = await this.domain.createUser(headerValue, body);
 
@@ -29,9 +39,8 @@ export class BaseUsersController {
   @Post('/session')
   @AuthenticateUserDocs()
   async authenticate(
-    @SetHeader()
-    @Body()
-    body: IDataAuthenticateRequest,
+    @Body(new ZodValidationPipe(AuthenticateUserSchema))
+    body: AuthenticateUserDto,
   ) {
     // await this.domain.setHeader(headerValue);
     const data = await this.domain.authenticateUser(body);
