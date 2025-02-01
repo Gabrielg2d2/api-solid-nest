@@ -6,7 +6,7 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const RequestCreateGyms = useGenerateDoc<IDataRequestCreateGym>(
+const RequestCreateGym = useGenerateDoc<IDataRequestCreateGym>(
   {
     title: 'Gym Data',
     description: 'Data for create gyms',
@@ -17,7 +17,7 @@ const RequestCreateGyms = useGenerateDoc<IDataRequestCreateGym>(
   'RequestCreateGyms',
 );
 
-const ResponseCreateGyms = useGenerateDoc<IDataResponseCreateGym>(
+const ResponseCreateGym = useGenerateDoc<IDataResponseCreateGym>(
   {
     id: '123456',
     title: 'CreateGymsDto',
@@ -38,11 +38,11 @@ export function CreateGymsDocs() {
       description: 'Description header',
       required: false,
     }),
-    ApiBody({ type: RequestCreateGyms }),
+    ApiBody({ type: RequestCreateGym }),
     ApiResponse({
       status: 201,
       description: 'The check ins has been successfully created.',
-      type: ResponseCreateGyms,
+      type: ResponseCreateGym,
     }),
     ApiResponse({ status: 500, description: 'Internal server error' }),
   );
