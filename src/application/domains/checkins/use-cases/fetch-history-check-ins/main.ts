@@ -1,8 +1,12 @@
 import { ICheckIn, IRepositoryCheckIn } from '../../repositories/interface';
 
+type IDataResponse = ICheckIn[];
+
 type IFetchHistoryCheckInsUseCase = {
   execute(userId: string): Promise<ICheckIn[]>;
 };
+
+export type { IDataResponse, IFetchHistoryCheckInsUseCase };
 export class FetchHistoryCheckInsUseCase
   implements IFetchHistoryCheckInsUseCase
 {

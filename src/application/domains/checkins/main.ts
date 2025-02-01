@@ -6,7 +6,10 @@ import {
   IDataResponse as IDataResponseCreateCheckIn,
   IReturnCheckInCreate,
 } from './use-cases/create-checkin/main';
-import { FetchHistoryCheckInsUseCase } from './use-cases/fetch-history-check-ins/main';
+import {
+  FetchHistoryCheckInsUseCase,
+  IDataResponse as IDataResponseFetchHistoryCheckIns,
+} from './use-cases/fetch-history-check-ins/main';
 
 interface ICheckInDomain {
   create(data: IDataRequestCreateCheckIn): IReturnCheckInCreate;
@@ -16,6 +19,7 @@ interface ICheckInDomain {
 export type {
   IDataRequestCreateCheckIn,
   IDataResponseCreateCheckIn,
+  IDataResponseFetchHistoryCheckIns,
   IReturnCheckInCreate,
 };
 
