@@ -2,9 +2,12 @@ import { IUserGlobal } from '@/application/@global/types/user';
 import { IRepositoryUsers } from '../../repositories/interface';
 import { ServiceUserValidation } from '../../services/user-validation';
 
-type IReturnDefaultGetProfile = Promise<IUserGlobal | null>;
+type IReturnDefaultGetProfile = Promise<IUserGlobal>;
 
-export type { IReturnDefaultGetProfile };
+type IDataRequest = string;
+type IDataResponse = IUserGlobal;
+
+export type { IDataRequest, IDataResponse, IReturnDefaultGetProfile };
 
 interface IGetProfileUseCase {
   execute(userId: string): IReturnDefaultGetProfile;
@@ -17,6 +20,6 @@ export class GetProfileUseCase implements IGetProfileUseCase {
 
     await new ServiceUserValidation().execute(user);
 
-    return user;
+    return user as IUserGlobal;
   }
 }

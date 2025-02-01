@@ -118,7 +118,14 @@
         ],
         "responses": {
           "200": {
-            "description": "User found successfully"
+            "description": "User found successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseGetProfile"
+                }
+              }
+            }
           },
           "404": {
             "description": "User not found."
@@ -335,7 +342,7 @@
             "example": "hashedpassword123"
           },
           "created_at": {
-            "example": "2025-02-01T22:28:26.695Z",
+            "example": "2025-02-01T22:45:51.389Z",
             "allOf": [
               {
                 "$ref": "#/components/schemas/CreateUserResponse => created_at"
@@ -388,7 +395,7 @@
             "example": "john.doe@example.com"
           },
           "created_at": {
-            "example": "2025-02-01T22:28:26.695Z",
+            "example": "2025-02-01T22:45:51.389Z",
             "allOf": [
               {
                 "$ref": "#/components/schemas/ResponseAuthenticate => user => created_at"
@@ -416,7 +423,7 @@
               "id": "1",
               "name": "John Doe",
               "email": "john.doe@example.com",
-              "created_at": "2025-02-01T22:28:26.695Z",
+              "created_at": "2025-02-01T22:45:51.389Z",
               "password_hash": "password_hash15615961"
             },
             "allOf": [
@@ -428,6 +435,46 @@
         },
         "required": [
           "user"
+        ]
+      },
+      "ResponseGetProfile => created_at": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseGetProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "123123123"
+          },
+          "name": {
+            "type": "string",
+            "example": "Test User"
+          },
+          "email": {
+            "type": "string",
+            "example": "test@gmail.com"
+          },
+          "password_hash": {
+            "type": "string",
+            "example": "$2a$06$NKPokWEEG6Zz5zZz5zZz5u"
+          },
+          "created_at": {
+            "example": "2025-02-01T22:45:51.389Z",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponseGetProfile => created_at"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "password_hash",
+          "created_at"
         ]
       },
       "CreateCheckInsDto": {

@@ -13,6 +13,8 @@ import {
 } from './use-cases/create-user/main';
 import {
   GetProfileUseCase,
+  IDataRequest as IDataGetProfileRequest,
+  IDataResponse as IDataGetProfileResponse,
   IReturnDefaultGetProfile,
 } from './use-cases/get-user-profile/main';
 
@@ -21,6 +23,8 @@ export type {
   IDataAuthenticateResponse,
   IDataCreateUserRequest,
   IDataCreateUserResponse,
+  IDataGetProfileRequest,
+  IDataGetProfileResponse,
 };
 
 interface IUsersDomain {
