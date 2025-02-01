@@ -2,17 +2,22 @@ import { GymsDomain } from '../gyms/main';
 import { ICheckIn, IRepositoryCheckIn } from './repositories/interface';
 import {
   CreateCheckInUseCase,
-  IDataCreateRequest,
+  IDataCreateRequest as IDataRequestCreateCheckIn,
+  IDataResponse as IDataResponseCreateCheckIn,
   IReturnCheckInCreate,
 } from './use-cases/create-checkin/main';
 import { FetchHistoryCheckInsUseCase } from './use-cases/fetch-history-check-ins/main';
 
 interface ICheckInDomain {
-  create(data: IDataCreateRequest): IReturnCheckInCreate;
+  create(data: IDataRequestCreateCheckIn): IReturnCheckInCreate;
   fetchHistoryCheckIns(userId: string): Promise<ICheckIn[]>;
 }
 
-export type { IDataCreateRequest, IReturnCheckInCreate };
+export type {
+  IDataRequestCreateCheckIn,
+  IDataResponseCreateCheckIn,
+  IReturnCheckInCreate,
+};
 
 export class CheckInDomain implements ICheckInDomain {
   constructor(
@@ -20,7 +25,7 @@ export class CheckInDomain implements ICheckInDomain {
     private readonly domainGyms: GymsDomain,
   ) {}
 
-  async create(data: IDataCreateRequest) {
+  async create(data: IDataRequestCreateCheckIn) {
     return await new CreateCheckInUseCase(
       this.repository,
       this.domainGyms,

@@ -8,11 +8,13 @@ import { ServiceGymExists } from '../../services/gym-exists';
 
 type IReturnCheckInCreate = Promise<ICheckIn>;
 
+type IDataResponse = ICheckIn;
+
 interface ICreateCheckInUseCase {
   execute(data: IDataCreateRequest): IReturnCheckInCreate;
 }
 
-export type { IDataCreateRequest, IReturnCheckInCreate };
+export type { IDataCreateRequest, IDataResponse, IReturnCheckInCreate };
 
 export class CreateCheckInUseCase implements ICreateCheckInUseCase {
   constructor(

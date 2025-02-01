@@ -1,16 +1,30 @@
-import { IDataCreateRequest } from '@/application/domains/checkins/main';
+import {
+  IDataRequestCreateCheckIn,
+  IDataResponseCreateCheckIn,
+} from '@/application/domains/checkins/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const CreateCheckInsDto = useGenerateDoc<IDataCreateRequest>(
+const RequestCreateCheckIn = useGenerateDoc<IDataRequestCreateCheckIn>(
   {
     gymId: '123',
     userId: '123123123',
     userLatitude: -6.1234,
     userLongitude: 106.1234,
   },
-  'CreateCheckInsDto',
+  'RequestCreateCheckIn',
+);
+
+const ResponseCreateCheckIn = useGenerateDoc<IDataResponseCreateCheckIn>(
+  {
+    id: 'string',
+    gym_id: 'string',
+    user_id: 'string',
+    validated_at: new Date(),
+    created_at: new Date(),
+  },
+  'ResponseCreateCheckIn',
 );
 
 export function CreateCheckInsDocs() {
@@ -21,14 +35,15 @@ export function CreateCheckInsDocs() {
       description: 'Description header',
       required: false,
     }),
-    ApiBody({ type: CreateCheckInsDto }),
+    ApiBody({ type: RequestCreateCheckIn }),
     ApiResponse({
       status: 201,
       description: 'The check ins has been successfully created.',
+      type: ResponseCreateCheckIn,
     }),
     ApiResponse({
-      status: 201,
-      description: 'The check ins has been successfully created.',
+      status: 400,
+      description: 'Check in already done today',
     }),
     ApiResponse({ status: 500, description: 'Internal server error' }),
   );

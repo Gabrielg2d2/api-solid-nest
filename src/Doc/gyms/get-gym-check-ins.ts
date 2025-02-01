@@ -5,7 +5,7 @@ import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
 const ResponseGetGymCheckIns = useGenerateDoc<IDataResponseFindGym>(
   {
-    id: 'ResponseGetGymCheckIns',
+    id: 'string',
     latitude: 0,
     longitude: 0,
     title: 'string',

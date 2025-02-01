@@ -1,6 +1,6 @@
 import {
   CheckInDomain,
-  IDataCreateRequest,
+  IDataRequestCreateCheckIn,
 } from '@/application/domains/checkins/main';
 import { CreateCheckInsDocs } from '@/doc/checkIns/create-check-ins';
 import { HistoryCheckInsDocs } from '@/doc/checkIns/fetch-historys-check-ins';
@@ -13,7 +13,7 @@ export class BaseCheckInsController {
   @CreateCheckInsDocs()
   async create(
     @Headers('header') headerValue = 'default-value',
-    @Body() body: IDataCreateRequest,
+    @Body() body: IDataRequestCreateCheckIn,
   ) {
     console.log('Header value: ', headerValue);
     const data = await this.domain.create(body);
