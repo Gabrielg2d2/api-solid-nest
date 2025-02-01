@@ -29,6 +29,7 @@ export class BaseUsersController {
     @Headers('header') headerValue = 'default-value',
     @Body(new ZodValidationPipe(CreateUserSchema)) body: CreateUserDto,
   ) {
+    // TODO: test headerValue
     const data = await this.domain.createUser(headerValue, body);
 
     return {
@@ -42,7 +43,6 @@ export class BaseUsersController {
     @Body(new ZodValidationPipe(AuthenticateUserSchema))
     body: AuthenticateUserDto,
   ) {
-    // await this.domain.setHeader(headerValue);
     const data = await this.domain.authenticateUser(body);
 
     return {
