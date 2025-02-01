@@ -15,13 +15,17 @@ const RequestCreateUser = useGenerateDoc<IDataCreateUserRequest>(
   'CreateUserRequest',
 );
 
-const ResponseCreateUser = useGenerateDoc<IDataCreateUserResponse>(
+const ResponseCreateUser = useGenerateDoc<{
+  user: IDataCreateUserResponse;
+}>(
   {
-    id: '1',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    password_hash: 'hashedpassword123',
-    created_at: new Date(),
+    user: {
+      id: '1',
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      password_hash: 'hashedpassword123',
+      created_at: new Date(),
+    },
   },
   'CreateUserResponse',
 );
