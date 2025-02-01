@@ -1,39 +1,26 @@
 import { applyDecorators } from '@nestjs/common';
-import {
-  ApiBody,
-  ApiHeader,
-  ApiOperation,
-  ApiProperty,
-  ApiResponse,
-} from '@nestjs/swagger';
+import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-class CreateUserRequest {
-  @ApiProperty({ example: 'John Doe' })
-  name!: string;
+const CreateUserRequest = useGenerateDoc(
+  {
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    password: 'password123',
+  },
+  'CreateUserRequest',
+);
 
-  @ApiProperty({ example: 'john.doe@example.com' })
-  email!: string;
-
-  @ApiProperty({ example: 'password123' })
-  password!: string;
-}
-
-class CreateUserResponse {
-  @ApiProperty({ example: '1' })
-  id!: string;
-
-  @ApiProperty({ example: 'John Doe' })
-  name!: string;
-
-  @ApiProperty({ example: 'john.doe@example.com' })
-  email!: string;
-
-  @ApiProperty({ example: 'hashedpassword123' })
-  password_hash!: string;
-
-  @ApiProperty({ example: '2023-10-01T00:00:00Z' })
-  created_at!: string;
-}
+const CreateUserResponse = useGenerateDoc(
+  {
+    id: '1',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    password_hash: 'hashedpassword123',
+    created_at: '2023-10-01T00:00:00Z',
+  },
+  'CreateUserResponse',
+);
 
 export function CreateUserDocs() {
   return applyDecorators(

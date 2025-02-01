@@ -3,7 +3,7 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const AuthenticateUserDto = useGenerateDoc<IDataAuthenticateRequest>(
+const RequestAuthenticate = useGenerateDoc<IDataAuthenticateRequest>(
   {
     email: 'test@gmail.com',
     password: '123456',
@@ -19,7 +19,7 @@ export function AuthenticateUserDocs() {
       description: 'Description header',
       required: false,
     }),
-    ApiBody({ type: AuthenticateUserDto }),
+    ApiBody({ type: RequestAuthenticate }),
     ApiResponse({
       status: 200,
       description: 'User authenticated successfully',

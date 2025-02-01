@@ -1,48 +1,6 @@
 {
   "openapi": "3.0.0",
   "paths": {
-    "/users/auxiliary-fetch-header": {
-      "get": {
-        "operationId": "DocUsersController_fetchHeader",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "doc/users"
-        ]
-      }
-    },
-    "/users/auxiliary-route-clear-all": {
-      "get": {
-        "operationId": "DocUsersController_clear",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "doc/users"
-        ]
-      }
-    },
-    "/users/auxiliary-route-fetch-all": {
-      "get": {
-        "operationId": "DocUsersController_fetch",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "doc/users"
-        ]
-      }
-    },
     "/users/create": {
       "post": {
         "operationId": "DocUsersController_create",
@@ -236,20 +194,6 @@
         "summary": "History check ins",
         "tags": [
           "doc/check-ins"
-        ]
-      }
-    },
-    "/gyms/auxiliary-route-fetch-all-gyms": {
-      "get": {
-        "operationId": "DocGymsController_fetch",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "tags": [
-          "doc/gyms"
         ]
       }
     },

@@ -1,8 +1,7 @@
 import { RepositoryUserTest } from '@/application/domains/users/repositories/doc';
 import { FactoryUsersDomainDoc } from '@/application/factories/users/doc';
-import { Controller, Get, Res } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
 import { BaseUsersController } from './base.controller';
 
 @ApiTags('doc/users')
@@ -14,33 +13,4 @@ export class DocUsersController extends BaseUsersController {
     super();
     this.domain = FactoryUsersDomainDoc.create();
   }
-  // TODO: APENAS DOCUMENTAÇÃO - INICIO
-  @Get('/auxiliary-fetch-header')
-  async fetchHeader(@Res() reply: Response) {
-    const repository = this.repository;
-    const result = await repository.getHeader();
-
-    return reply.status(200).send({
-      header: result,
-    });
-  }
-
-  @Get('/auxiliary-route-clear-all')
-  async clear(@Res() reply: Response) {
-    const repository = this.repository;
-    await repository.clearAllUsers();
-
-    return reply.status(200).send({
-      message: 'All users removed',
-    });
-  }
-
-  @Get('/auxiliary-route-fetch-all')
-  async fetch(@Res() reply: Response) {
-    const repository = this.repository;
-    const result = await repository.getAllUsers();
-
-    return reply.status(200).send(result);
-  }
-  //TODO: APENAS DOCUMENTAÇÃO - FIM
 }
