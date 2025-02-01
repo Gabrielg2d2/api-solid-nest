@@ -36,7 +36,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     const errorResponse = Presenter.errorResponse(
       message,
-      status,
       new Date().toISOString(),
       request.url,
       exception instanceof BadRequestException

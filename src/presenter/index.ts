@@ -5,6 +5,8 @@ export class Presenter {
         return 'Resource created successfully';
       case 200:
         return 'Resource found';
+      default:
+        return `Unknown status code: ${statusCode}`;
     }
   }
 
@@ -13,13 +15,11 @@ export class Presenter {
       success: true,
       message: this.getMessageDefault(statusCode),
       data,
-      statusCode,
     };
   }
 
   static errorResponse(
     message: string,
-    statusCode: number,
     timestamp: string,
     path: string,
     details?: any,
@@ -28,7 +28,6 @@ export class Presenter {
       success: false,
       message,
       data: null,
-      statusCode,
       timestamp,
       path,
       details,
