@@ -6,7 +6,7 @@ import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const CreateUserRequest = useGenerateDoc<IDataCreateUserRequest>(
+const RequestCreateUser = useGenerateDoc<IDataCreateUserRequest>(
   {
     name: 'John Doe',
     email: 'john.doe@example.com',
@@ -15,7 +15,7 @@ const CreateUserRequest = useGenerateDoc<IDataCreateUserRequest>(
   'CreateUserRequest',
 );
 
-const CreateUserResponse = useGenerateDoc<IDataCreateUserResponse>(
+const ResponseCreateUser = useGenerateDoc<IDataCreateUserResponse>(
   {
     id: '1',
     name: 'John Doe',
@@ -34,11 +34,11 @@ export function CreateUserDocs() {
       description: 'Description header',
       required: false,
     }),
-    ApiBody({ type: CreateUserRequest }),
+    ApiBody({ type: RequestCreateUser }),
     ApiResponse({
       status: 201,
       description: 'The user has been successfully created.',
-      type: CreateUserResponse,
+      type: ResponseCreateUser,
     }),
     ApiResponse({ status: 400, description: 'Bad Request.' }),
     ApiResponse({ status: 409, description: 'User already exists' }),

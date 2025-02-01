@@ -3,11 +3,13 @@ import { IDataRequest, IGymGlobal } from '../../repositories/repository';
 
 type IReturnCheckInCreate = Promise<IGymGlobal>;
 
+type IDataResponse = IGymGlobal;
+
 interface ICreateGymUseCase {
   execute(data: IDataRequest): IReturnCheckInCreate;
 }
 
-export type { IDataRequest, IReturnCheckInCreate };
+export type { IDataRequest, IDataResponse, IReturnCheckInCreate };
 
 export class CreateGymUseCase implements ICreateGymUseCase {
   constructor(private readonly repository: IRepositoryGyms) {}

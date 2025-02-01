@@ -1,5 +1,5 @@
 export type IGymGlobal = {
-  id?: string;
+  id: string;
   title: string;
   description?: string | null;
   phone?: string | null;

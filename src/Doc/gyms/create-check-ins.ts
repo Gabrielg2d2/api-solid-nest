@@ -1,17 +1,33 @@
-import { IDataRequest } from '@/application/domains/gyms/main';
+import {
+  IDataRequestCreateGym,
+  IDataResponseCreateGym,
+} from '@/application/domains/gyms/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const CreateGymsDto = useGenerateDoc<IDataRequest>(
+const RequestCreateGyms = useGenerateDoc<IDataRequestCreateGym>(
   {
-    title: 'CreateGymsDto',
+    title: 'Gym Data',
     description: 'Data for create gyms',
     latitude: -6.1234,
     longitude: 106.1234,
     phone: '08123456789',
   },
-  'CreateGymsDto',
+  'RequestCreateGyms',
+);
+
+const ResponseCreateGyms = useGenerateDoc<IDataResponseCreateGym>(
+  {
+    id: '123456',
+    title: 'CreateGymsDto',
+    description: 'Data for create gyms',
+    latitude: -6.1234,
+    longitude: 106.1234,
+    phone: '08123456789',
+    created_at: new Date(),
+  },
+  'ResponseCreateGyms',
 );
 
 export function CreateGymsDocs() {
@@ -22,14 +38,11 @@ export function CreateGymsDocs() {
       description: 'Description header',
       required: false,
     }),
-    ApiBody({ type: CreateGymsDto }),
+    ApiBody({ type: RequestCreateGyms }),
     ApiResponse({
       status: 201,
       description: 'The check ins has been successfully created.',
-    }),
-    ApiResponse({
-      status: 201,
-      description: 'The check ins has been successfully created.',
+      type: ResponseCreateGyms,
     }),
     ApiResponse({ status: 500, description: 'Internal server error' }),
   );
