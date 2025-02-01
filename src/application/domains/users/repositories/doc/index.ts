@@ -39,24 +39,6 @@ export class RepositoryUserTest implements IRepositoryUsers {
     this.headers.push(header);
   }
 
-  // TODO: DOC APENAS SWAGGER
-  async clearAllUsers() {
-    this.users = [];
-  }
-
-  async getHeader() {
-    return this.headers;
-  }
-
-  // TODO: DOC APENAS SWAGGER
-  async getAllUsers() {
-    try {
-      return this.users;
-    } catch (error) {
-      throw new Error('RepositoryUserTest: Error to get users');
-    }
-  }
-
   async getUserById(id: string) {
     try {
       const result = this.users.find((user) => user.id === id);
