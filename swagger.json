@@ -1,0 +1,473 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/users/auxiliary-fetch-header": {
+      "get": {
+        "operationId": "DocUsersController_fetchHeader",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/users/auxiliary-route-clear-all": {
+      "get": {
+        "operationId": "DocUsersController_clear",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/users/auxiliary-route-fetch-all": {
+      "get": {
+        "operationId": "DocUsersController_fetch",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/users/create": {
+      "post": {
+        "operationId": "DocUsersController_create",
+        "parameters": [
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The user has been successfully created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request."
+          },
+          "409": {
+            "description": "User already exists"
+          }
+        },
+        "summary": "Create user",
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/users/session": {
+      "post": {
+        "operationId": "DocUsersController_authenticate",
+        "parameters": [
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthenticateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User authenticated successfully"
+          },
+          "400": {
+            "description": "Credentials are invalid."
+          }
+        },
+        "summary": "Authenticate user",
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/users/profile/{userId}": {
+      "get": {
+        "operationId": "DocUsersController_getProfile",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User found successfully"
+          },
+          "404": {
+            "description": "User not found."
+          }
+        },
+        "summary": "Get user profile",
+        "tags": [
+          "doc/users"
+        ]
+      }
+    },
+    "/check-ins/create": {
+      "post": {
+        "operationId": "DocCheckInsController_create",
+        "parameters": [
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCheckInsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The check ins has been successfully created."
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "summary": "Create check ins",
+        "tags": [
+          "doc/check-ins"
+        ]
+      }
+    },
+    "/check-ins/history-check-ins/{userId}": {
+      "get": {
+        "operationId": "DocCheckInsController_fetchHistoryCheckIns",
+        "parameters": [
+          {
+            "name": "userId",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "fetch history check-ins successfully"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "summary": "History check ins",
+        "tags": [
+          "doc/check-ins"
+        ]
+      }
+    },
+    "/gyms/auxiliary-route-fetch-all-gyms": {
+      "get": {
+        "operationId": "DocGymsController_fetch",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "doc/gyms"
+        ]
+      }
+    },
+    "/gyms/create": {
+      "post": {
+        "operationId": "DocGymsController_create",
+        "parameters": [
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGymsDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "The check ins has been successfully created."
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "summary": "Create check ins",
+        "tags": [
+          "doc/gyms"
+        ]
+      }
+    },
+    "/gyms/gyms/{id}": {
+      "get": {
+        "operationId": "DocGymsController_getProfile",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "header",
+            "in": "header",
+            "description": "Description header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Gym not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "summary": "Get gym by id",
+        "tags": [
+          "doc/gyms"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "MyGym API - Test In Memory",
+    "description": "The MyGym API documentation, for testing purposes",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "schemas": {
+      "CreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "password123"
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password"
+        ]
+      },
+      "CreateUserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "password_hash": {
+            "type": "string",
+            "example": "hashedpassword123"
+          },
+          "created_at": {
+            "type": "string",
+            "example": "2023-10-01T00:00:00Z"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "password_hash",
+          "created_at"
+        ]
+      },
+      "AuthenticateUserDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "example": "test@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "123456"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "CreateCheckInsDto": {
+        "type": "object",
+        "properties": {
+          "gymId": {
+            "type": "string",
+            "example": "123"
+          },
+          "userId": {
+            "type": "string",
+            "example": "123123123"
+          },
+          "userLatitude": {
+            "type": "number",
+            "example": -6.1234
+          },
+          "userLongitude": {
+            "type": "number",
+            "example": 106.1234
+          }
+        },
+        "required": [
+          "gymId",
+          "userId",
+          "userLatitude",
+          "userLongitude"
+        ]
+      },
+      "CreateGymsDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "CreateGymsDto"
+          },
+          "description": {
+            "type": "string",
+            "example": "Data for create gyms"
+          },
+          "latitude": {
+            "type": "number",
+            "example": -6.1234
+          },
+          "longitude": {
+            "type": "number",
+            "example": 106.1234
+          },
+          "phone": {
+            "type": "string",
+            "example": "08123456789"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "latitude",
+          "longitude",
+          "phone"
+        ]
+      }
+    }
+  }
+}
