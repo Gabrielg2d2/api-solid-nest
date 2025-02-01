@@ -15,9 +15,7 @@ const RequestCreateUser = useGenerateDoc<IDataCreateUserRequest>(
   'CreateUserRequest',
 );
 
-const ResponseCreateUser = useGenerateDoc<{
-  user: IDataCreateUserResponse;
-}>(
+const ResponseCreateUser = useGenerateDoc<IDataCreateUserResponse>(
   {
     user: {
       id: '1',

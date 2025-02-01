@@ -10,14 +10,16 @@ type IDataRequest = {
   password: string;
 };
 
-type IDataResponse = IUserGlobal;
+type IDataResponse = {
+  user: IUserGlobal;
+};
 
-type IReturnCreateUserUseCase = Promise<IDataResponse | null>;
+type IReturnCreateUserUseCase = Promise<IDataResponse>;
 
 export type { IDataRequest, IDataResponse, IReturnCreateUserUseCase };
 
 interface ICreateUserUseCase {
-  execute(body: IDataRequest): Promise<IDataResponse | null>;
+  execute(body: IDataRequest): Promise<IDataResponse>;
 }
 
 export class CreateUserUseCase implements ICreateUserUseCase {
@@ -42,6 +44,8 @@ export class CreateUserUseCase implements ICreateUserUseCase {
       password: password_hash,
     });
 
-    return newUser;
+    return {
+      user: newUser as IUserGlobal,
+    };
   }
 }
