@@ -5,7 +5,11 @@ import {
   IDataResponse as IDataResponseCreateGym,
   IReturnCheckInCreate,
 } from './use-cases/create-gym/main';
-import { FindGymUseCase, IReturnFindGym } from './use-cases/find-gym/main';
+import {
+  FindGymUseCase,
+  IDataResponse as IDataResponseFindGym,
+  IReturnFindGym,
+} from './use-cases/find-gym/main';
 
 interface IGymsDomain {
   create(data: IDataRequestCreateGym): IReturnCheckInCreate;
@@ -15,6 +19,7 @@ interface IGymsDomain {
 export type {
   IDataRequestCreateGym,
   IDataResponseCreateGym,
+  IDataResponseFindGym,
   IReturnCheckInCreate,
 };
 

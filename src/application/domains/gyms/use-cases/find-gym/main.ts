@@ -2,13 +2,14 @@ import { IRepositoryGyms } from '../../repositories/interface';
 import { IGymGlobal } from '../../repositories/repository';
 import { ServiceGymAlreadyExistsError } from '../../services/gym-alredy-exists';
 
-type IReturnFindGym = Promise<IGymGlobal | null>;
+type IReturnFindGym = Promise<IGymGlobal>;
+type IDataResponse = IGymGlobal;
 
 interface IFindGymUseCase {
   execute(gymId: string): IReturnFindGym;
 }
 
-export type { IReturnFindGym };
+export type { IDataResponse, IReturnFindGym };
 
 export class FindGymUseCase implements IFindGymUseCase {
   constructor(private readonly repository: IRepositoryGyms) {}
@@ -18,6 +19,6 @@ export class FindGymUseCase implements IFindGymUseCase {
 
     await new ServiceGymAlreadyExistsError().execute(gym);
 
-    return gym;
+    return gym as IGymGlobal;
   }
 }
