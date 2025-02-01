@@ -68,14 +68,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AuthenticateUserDto"
+                "$ref": "#/components/schemas/RequestAuthenticate"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "User authenticated successfully"
+            "description": "User authenticated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseAuthenticate"
+                }
+              }
+            }
           },
           "400": {
             "description": "Credentials are invalid."
@@ -304,6 +311,10 @@
           "password"
         ]
       },
+      "CreateUserResponse => created_at": {
+        "type": "object",
+        "properties": {}
+      },
       "CreateUserResponse": {
         "type": "object",
         "properties": {
@@ -324,8 +335,12 @@
             "example": "hashedpassword123"
           },
           "created_at": {
-            "type": "string",
-            "example": "2023-10-01T00:00:00Z"
+            "example": "2025-02-01T22:28:26.695Z",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CreateUserResponse => created_at"
+              }
+            ]
           }
         },
         "required": [
@@ -336,7 +351,7 @@
           "created_at"
         ]
       },
-      "AuthenticateUserDto": {
+      "RequestAuthenticate": {
         "type": "object",
         "properties": {
           "email": {
@@ -351,6 +366,68 @@
         "required": [
           "email",
           "password"
+        ]
+      },
+      "ResponseAuthenticate => user => created_at": {
+        "type": "object",
+        "properties": {}
+      },
+      "ResponseAuthenticate => user": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "created_at": {
+            "example": "2025-02-01T22:28:26.695Z",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponseAuthenticate => user => created_at"
+              }
+            ]
+          },
+          "password_hash": {
+            "type": "string",
+            "example": "password_hash15615961"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "created_at",
+          "password_hash"
+        ]
+      },
+      "ResponseAuthenticate": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "example": {
+              "id": "1",
+              "name": "John Doe",
+              "email": "john.doe@example.com",
+              "created_at": "2025-02-01T22:28:26.695Z",
+              "password_hash": "password_hash15615961"
+            },
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResponseAuthenticate => user"
+              }
+            ]
+          }
+        },
+        "required": [
+          "user"
         ]
       },
       "CreateCheckInsDto": {

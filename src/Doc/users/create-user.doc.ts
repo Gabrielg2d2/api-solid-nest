@@ -1,8 +1,12 @@
+import {
+  IDataCreateUserRequest,
+  IDataCreateUserResponse,
+} from '@/application/domains/users/main';
 import { applyDecorators } from '@nestjs/common';
 import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const CreateUserRequest = useGenerateDoc(
+const CreateUserRequest = useGenerateDoc<IDataCreateUserRequest>(
   {
     name: 'John Doe',
     email: 'john.doe@example.com',
@@ -11,13 +15,13 @@ const CreateUserRequest = useGenerateDoc(
   'CreateUserRequest',
 );
 
-const CreateUserResponse = useGenerateDoc(
+const CreateUserResponse = useGenerateDoc<IDataCreateUserResponse>(
   {
     id: '1',
     name: 'John Doe',
     email: 'john.doe@example.com',
     password_hash: 'hashedpassword123',
-    created_at: '2023-10-01T00:00:00Z',
+    created_at: new Date(),
   },
   'CreateUserResponse',
 );

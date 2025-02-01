@@ -2,11 +2,13 @@ import { IRepositoryUsers } from './repositories/interface';
 import {
   AuthenticateUserUseCase,
   IDataRequest as IDataAuthenticateRequest,
+  IDataResponse as IDataAuthenticateResponse,
   IReturnAuthenticateUser,
 } from './use-cases/authenticate-user/main';
 import {
   CreateUserUseCase,
   IDataRequest as IDataCreateUserRequest,
+  IDataResponse as IDataCreateUserResponse,
   IReturnCreateUserUseCase,
 } from './use-cases/create-user/main';
 import {
@@ -14,7 +16,12 @@ import {
   IReturnDefaultGetProfile,
 } from './use-cases/get-user-profile/main';
 
-export type { IDataAuthenticateRequest, IDataCreateUserRequest };
+export type {
+  IDataAuthenticateRequest,
+  IDataAuthenticateResponse,
+  IDataCreateUserRequest,
+  IDataCreateUserResponse,
+};
 
 interface IUsersDomain {
   createUser(
