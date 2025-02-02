@@ -49,4 +49,18 @@ describe('FactoryUsersDomainDoc', () => {
       },
     });
   });
+
+  test('should not create a user with e-mail already registered', async () => {
+    const body = {
+      name: 'name',
+      email: 'email@email.com',
+      password: 'password',
+    };
+
+    await sut.createUser('header', body);
+
+    await expect(() => sut.createUser('header', body)).rejects.toThrowError(
+      'User already exists',
+    );
+  });
 });
