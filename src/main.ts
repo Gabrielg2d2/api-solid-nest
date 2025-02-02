@@ -36,8 +36,9 @@ function getNodeEnv() {
 
 async function bootstrap() {
   const { title, port, description, environment } = getNodeEnv();
+  const isTest = environment === 'test';
 
-  const module = environment === 'test' ? DocModule : AppModule;
+  const module = isTest ? DocModule : AppModule;
   const app = await NestFactory.create(module);
 
   const config = new DocumentBuilder()
@@ -48,7 +49,9 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  writeFileSync('./swagger.json', JSON.stringify(document, null, 2));
+  if (!isTest) {
+    writeFileSync('./swagger.json', JSON.stringify(document, null, 2));
+  }
 
   app.useGlobalInterceptors(new ResponseInterceptor());
   app.useGlobalFilters(new HttpExceptionFilter());
