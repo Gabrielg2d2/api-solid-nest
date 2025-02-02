@@ -51,10 +51,10 @@ export class RepositoryUserTest implements IRepositoryUsers {
       },
     ];
   }
-  async utilsTest() {
+  utilsTest() {
     return {
-      clearAllUsers: this.clearAllUsers,
-      seedUsers: this.seedUsers,
+      clearAllUsers: this.clearAllUsers.bind(this),
+      seedUsers: this.seedUsers.bind(this),
     };
   }
   // TODO: Utils test - finish

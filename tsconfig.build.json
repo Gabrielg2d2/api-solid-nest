@@ -6,6 +6,7 @@
     "dist",
     "doc",
     "**/doc.ts",
+    "**/doc.test.ts",
     "**/*spec.ts",
     "**/*test.ts",
     "**/*.e2e-spec.ts"
