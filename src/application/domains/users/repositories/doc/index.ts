@@ -35,6 +35,30 @@ export class RepositoryUserTest implements IRepositoryUsers {
     return RepositoryUserTest.instance;
   }
 
+  // TODO: Utils test - clearAllUsers, seedUsers
+  private clearAllUsers() {
+    this.users = [];
+  }
+
+  private seedUsers() {
+    this.users = [
+      {
+        id: 'test-id',
+        name: 'Test User',
+        email: 'test@gmail.com',
+        password_hash: 'hash_123',
+        created_at: new Date('2025-09-01T00:00:00.000Z'),
+      },
+    ];
+  }
+  async utilsTest() {
+    return {
+      clearAllUsers: this.clearAllUsers,
+      seedUsers: this.seedUsers,
+    };
+  }
+  // TODO: Utils test - finish
+
   async setHeader(header: string) {
     this.headers.push(header);
   }
