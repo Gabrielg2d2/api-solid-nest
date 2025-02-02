@@ -9,7 +9,7 @@ export function makeSutUsers(type: TSutProps = 'default') {
 
   switch (type) {
     case 'newRepository':
-      sut = FactoryUsersDomainDoc.createWithNewRepository();
+      sut = FactoryUsersDomainDoc.createWithClearedRepository();
       break;
     case 'seedRepository':
       sut = FactoryUsersDomainDoc.createWithSeedRepository();

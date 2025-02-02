@@ -7,7 +7,7 @@ export class FactoryUsersDomainDoc {
     return new UsersDomain(repository);
   }
 
-  static createWithNewRepository() {
+  static createWithClearedRepository() {
     const repository = RepositoryUserTest.getInstance();
     repository.utilsTest().clearAllUsers();
     return new UsersDomain(repository);
