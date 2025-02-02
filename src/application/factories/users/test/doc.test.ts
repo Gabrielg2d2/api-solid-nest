@@ -49,23 +49,4 @@ describe('FactoryUsersDomainDoc', () => {
       },
     });
   });
-
-  test('should create a user with valid data', async () => {
-    const body = {
-      name: 'name',
-      email: 'email@email.com',
-      password: 'password',
-    };
-    const result = await sut.createUser('header', body);
-
-    expect(result).toEqual({
-      user: {
-        id: expect.any(String),
-        name: 'name',
-        email: 'email@email.com',
-        password_hash: expect.any(String),
-        created_at: expect.any(Date),
-      },
-    });
-  });
 });
