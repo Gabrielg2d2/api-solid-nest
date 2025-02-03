@@ -13,45 +13,51 @@ commit_scope=""
 commit_description=""
 
 # Detect commit type based on staged files and their content
-if echo "$staged_files" | grep -q "^test"; then
+if echo "$staged_files" | grep -q "^test|spec\.ts$|test\.ts$"; then
   commit_type="test"
-  if echo "$staged_content" | grep -q "^+.*describe\|^+.*it\|^+.*test"; then
+  if echo "$staged_content" | grep -q "^+.*describe\|^+.*it\|^+.*test\|^+.*expect"; then
     commit_description="add new test cases"
   else
     commit_description="update existing tests"
   fi
-elif echo "$staged_files" | grep -q "^docs"; then
+elif echo "$staged_files" | grep -q "^docs\|README\.md\|\.md$"; then
   commit_type="docs"
-  if echo "$staged_content" | grep -q "^+.*README\|^+.*documentation"; then
+  if echo "$staged_content" | grep -q "^+.*README\|^+.*documentation\|^+.*swagger"; then
     commit_description="update documentation"
   else
     commit_description="improve docs"
   fi
 elif echo "$staged_files" | grep -q "^src"; then
-  if echo "$staged_content" | grep -q "^+.*fix\|^+.*bug\|^+.*error\|^+.*resolve"; then
+  if echo "$staged_content" | grep -q "^+.*fix\|^+.*bug\|^+.*error\|^+.*resolve\|^+.*catch"; then
     commit_type="fix"
-    if echo "$staged_content" | grep -q "^+.*security\|^+.*vulnerability"; then
+    if echo "$staged_content" | grep -q "^+.*security\|^+.*vulnerability\|^+.*auth"; then
       commit_description="fix security issue"
     else
       commit_description="fix bug in functionality"
     fi
-  elif echo "$staged_content" | grep -q "^+.*refactor\|^+.*improve\|^+.*enhance"; then
+  elif echo "$staged_content" | grep -q "^+.*refactor\|^+.*improve\|^+.*enhance\|^+.*optimize"; then
     commit_type="refactor"
     commit_description="improve code structure"
-  elif echo "$staged_content" | grep -q "^+.*style\|^+.*format\|^+.*lint"; then
+  elif echo "$staged_content" | grep -q "^+.*style\|^+.*format\|^+.*lint\|^+.*prettier"; then
     commit_type="style"
     commit_description="improve code style"
+  elif echo "$staged_content" | grep -q "^+.*perf\|^+.*performance\|^+.*speed\|^+.*optimize"; then
+    commit_type="perf"
+    commit_description="improve performance"
   else
     commit_type="feat"
     commit_description="add new feature"
   fi
-elif echo "$staged_files" | grep -q "package\.json"; then
+elif echo "$staged_files" | grep -q "package\.json\|yarn\.lock\|package-lock\.json"; then
   commit_type="chore"
-  if echo "$staged_content" | grep -q "^+.*dependencies"; then
+  if echo "$staged_content" | grep -q "^+.*dependencies\|^+.*devDependencies"; then
     commit_description="update dependencies"
   else
     commit_description="update package configuration"
   fi
+elif echo "$staged_files" | grep -q "\.github\|\.husky\|\.eslintrc\|\.prettier"; then
+  commit_type="chore"
+  commit_description="update project configuration"
 else
   commit_type="chore"
   commit_description="update project files"
