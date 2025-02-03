@@ -6,25 +6,7 @@ import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 export class RepositoryUserTest implements IRepositoryUsers {
   private static instance: RepositoryUserTest;
   private headers: string[] = [];
-  private users: IUserGlobal[] = [
-    {
-      id: '123123123',
-      name: 'Test User',
-      email: 'test@gmail.com',
-      password_hash:
-        '$2a$06$NKPokWEEGykqDgrEqVnxge5q8xhKnCI7UfayPjdHZHJnovITMZE1y', // 123456
-      created_at: new Date(),
-    },
-
-    {
-      id: 'test-id',
-      name: 'Test User',
-      email: 'test@gmail.com',
-      password_hash:
-        '$2a$06$NKPokWEEGykqDgrEqVnxge5q8xhKnCI7UfayPjdHZHJnovITMZE1y', // 123456
-      created_at: new Date('2025-09-01T00:00:00.000Z'),
-    },
-  ];
+  private users: IUserGlobal[] = [];
 
   private constructor() {}
 
@@ -45,9 +27,16 @@ export class RepositoryUserTest implements IRepositoryUsers {
       {
         id: 'test-id',
         name: 'Test User',
-        email: 'test@gmail.com',
+        email: 'test1@gmail.com',
         password_hash: 'hash_123',
         created_at: new Date('2025-09-01T00:00:00.000Z'),
+      },
+      {
+        id: 'test-id-2',
+        name: 'Test User 2',
+        email: 'test2@gmail.com',
+        password_hash: 'hash_123',
+        created_at: new Date('2025-09-02T00:00:00.000Z'),
       },
     ];
   }
