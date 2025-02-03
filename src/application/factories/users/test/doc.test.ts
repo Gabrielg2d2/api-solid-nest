@@ -31,36 +31,38 @@ describe('FactoryUsersDomainDoc', () => {
     sut = makeSutUsers('newRepository').sut;
   });
 
-  test('should create a user with valid data', async () => {
-    const body = {
-      name: 'name',
-      email: 'email@email.com',
-      password: 'password',
-    };
-    const result = await sut.createUser('header', body);
-
-    expect(result).toEqual({
-      user: {
-        id: expect.any(String),
+  describe('Create user', () => {
+    test('should create a user with valid data', async () => {
+      const body = {
         name: 'name',
         email: 'email@email.com',
-        password_hash: expect.any(String),
-        created_at: expect.any(Date),
-      },
+        password: 'password',
+      };
+      const result = await sut.createUser('header', body);
+
+      expect(result).toEqual({
+        user: {
+          id: expect.any(String),
+          name: 'name',
+          email: 'email@email.com',
+          password_hash: expect.any(String),
+          created_at: expect.any(Date),
+        },
+      });
     });
-  });
 
-  test('should not create a user with e-mail already registered', async () => {
-    const body = {
-      name: 'name',
-      email: 'email@email.com',
-      password: 'password12345',
-    };
+    test('should not create a user with e-mail already registered', async () => {
+      const body = {
+        name: 'name',
+        email: 'email@email.com',
+        password: 'password12345',
+      };
 
-    await sut.createUser('header', body);
+      await sut.createUser('header', body);
 
-    await expect(() => sut.createUser('header', body)).rejects.toThrowError(
-      'User already exists',
-    );
+      await expect(() => sut.createUser('header', body)).rejects.toThrowError(
+        'User already exists',
+      );
+    });
   });
 });
