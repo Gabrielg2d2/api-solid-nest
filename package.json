@@ -23,7 +23,8 @@
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
     "prisma:studio": "npx prisma studio",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev"
+    "prisma:migrate": "npx prisma migrate dev",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@anatine/zod-nestjs": "2.0.10",
@@ -42,6 +43,8 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.7.1",
+    "@commitlint/config-conventional": "19.7.1",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
@@ -58,6 +61,7 @@
     "eslint": "^8.0.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "husky": "9.1.7",
     "prettier": "^3.0.0",
     "prisma": "6.1.0",
     "source-map-support": "^0.5.21",
