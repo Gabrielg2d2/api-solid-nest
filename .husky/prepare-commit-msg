@@ -3,44 +3,71 @@
 commit_msg_file=$1
 commit_source=$2
 
-# Get the staged files
+# Get the staged files and their content
 staged_files=$(git diff --cached --name-only)
+staged_content=$(git diff --cached)
 
 # Initialize variables for commit type detection
 commit_type=""
 commit_scope=""
 commit_description=""
 
-# Detect commit type based on staged files
+# Detect commit type based on staged files and their content
 if echo "$staged_files" | grep -q "^test"; then
   commit_type="test"
+  if echo "$staged_content" | grep -q "^+.*describe\|^+.*it\|^+.*test"; then
+    commit_description="add new test cases"
+  else
+    commit_description="update existing tests"
+  fi
 elif echo "$staged_files" | grep -q "^docs"; then
   commit_type="docs"
+  if echo "$staged_content" | grep -q "^+.*README\|^+.*documentation"; then
+    commit_description="update documentation"
+  else
+    commit_description="improve docs"
+  fi
 elif echo "$staged_files" | grep -q "^src"; then
-  if git diff --cached -U0 | grep -q "^+.*fix|^+.*bug|^+.*error"; then
+  if echo "$staged_content" | grep -q "^+.*fix\|^+.*bug\|^+.*error\|^+.*resolve"; then
     commit_type="fix"
+    if echo "$staged_content" | grep -q "^+.*security\|^+.*vulnerability"; then
+      commit_description="fix security issue"
+    else
+      commit_description="fix bug in functionality"
+    fi
+  elif echo "$staged_content" | grep -q "^+.*refactor\|^+.*improve\|^+.*enhance"; then
+    commit_type="refactor"
+    commit_description="improve code structure"
+  elif echo "$staged_content" | grep -q "^+.*style\|^+.*format\|^+.*lint"; then
+    commit_type="style"
+    commit_description="improve code style"
   else
     commit_type="feat"
+    commit_description="add new feature"
   fi
 elif echo "$staged_files" | grep -q "package\.json"; then
   commit_type="chore"
+  if echo "$staged_content" | grep -q "^+.*dependencies"; then
+    commit_description="update dependencies"
+  else
+    commit_description="update package configuration"
+  fi
 else
   commit_type="chore"
+  commit_description="update project files"
 fi
 
 # Get the main changed component for scope
 if [ -n "$staged_files" ]; then
   main_file=$(echo "$staged_files" | head -n 1)
   commit_scope=$(echo "$main_file" | cut -d'/' -f1)
-fi
-
-# Generate a basic description
-if [ -n "$staged_files" ]; then
-  changed_files_count=$(echo "$staged_files" | wc -l)
-  if [ $changed_files_count -eq 1 ]; then
-    commit_description="update $(basename "$main_file")"
-  else
-    commit_description="update multiple files (${changed_files_count} files)"
+  
+  # Make scope more meaningful
+  if [ "$commit_scope" = "src" ]; then
+    second_level=$(echo "$main_file" | cut -d'/' -f2)
+    if [ -n "$second_level" ]; then
+      commit_scope="$second_level"
+    fi
   fi
 fi
 
