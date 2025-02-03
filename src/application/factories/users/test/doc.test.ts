@@ -54,7 +54,7 @@ describe('FactoryUsersDomainDoc', () => {
     const body = {
       name: 'name',
       email: 'email@email.com',
-      password: 'password123',
+      password: 'password12',
     };
 
     await sut.createUser('header', body);
