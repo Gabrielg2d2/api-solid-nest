@@ -11,12 +11,6 @@ export class RootException extends Error {
   }
 }
 
-export class ConflictException extends RootException {
-  constructor(message: string) {
-    super(message, 409);
-  }
-}
-
 export class ForbiddenException extends RootException {
   constructor(message: string) {
     super(message, 403);
@@ -26,5 +20,11 @@ export class ForbiddenException extends RootException {
 export class NotFoundException extends RootException {
   constructor(message: string) {
     super(message, 404);
+  }
+}
+
+export class ConflictException extends RootException {
+  constructor(message: string) {
+    super(message, 409);
   }
 }
