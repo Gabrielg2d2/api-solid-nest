@@ -49,7 +49,7 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     });
 
     return {
-      user: newUser as IUserGlobal,
+      user: newUser,
     };
   }
 }
