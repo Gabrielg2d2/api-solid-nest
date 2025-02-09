@@ -2,7 +2,7 @@ import { GymsDomain } from '@/application/domains/gyms/main';
 import { CreateGymsDocs } from '@/doc/gyms/create-check-ins';
 import { GetGymsDocs } from '@/doc/gyms/get-gym-check-ins';
 import { ZodValidationPipe } from '@/validations/zod-validation.pipe';
-import { Body, Get, Headers, Param, Post } from '@nestjs/common';
+import { Body, Get, Param, Post } from '@nestjs/common';
 import { z } from 'zod';
 
 export const CreateGymSchema = z.object({
@@ -26,20 +26,14 @@ export class BaseGymsController {
   @Post('/create')
   @CreateGymsDocs()
   async create(
-    @Headers('header') headerValue = 'default-value',
     @Body(new ZodValidationPipe(CreateGymSchema)) body: CreateGymDto,
   ) {
-    console.log('Header value: ', headerValue);
     return await this.domain.create(body);
   }
 
   @Get('/gyms/:id')
   @GetGymsDocs()
-  async getProfile(
-    @Headers('header') headerValue = 'default-value',
-    @Param('id') id: string,
-  ) {
-    console.log('Header value: ', headerValue);
+  async getProfile(@Param('id') id: string) {
     return await this.domain.findGym(id);
   }
 }

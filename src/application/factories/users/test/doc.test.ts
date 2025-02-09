@@ -38,7 +38,7 @@ describe('FactoryUsersDomainDoc', () => {
         email: 'email@email.com',
         password: 'password',
       };
-      const result = await sut.createUser('header', body);
+      const result = await sut.createUser(body);
 
       expect(result).toEqual({
         user: {
@@ -58,9 +58,9 @@ describe('FactoryUsersDomainDoc', () => {
         password: 'password1234',
       };
 
-      await sut.createUser('header', body);
+      await sut.createUser(body);
 
-      await expect(() => sut.createUser('header', body)).rejects.toThrowError(
+      await expect(() => sut.createUser(body)).rejects.toThrowError(
         'User already exists',
       );
     });

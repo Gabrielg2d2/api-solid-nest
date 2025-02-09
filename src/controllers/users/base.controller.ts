@@ -3,7 +3,7 @@ import { AuthenticateUserDocs } from '@/doc/users/authenticate-user.doc';
 import { CreateUserDocs } from '@/doc/users/create-user.doc';
 import { ProfileUserDocs } from '@/doc/users/get-profile-user.doc';
 import { ZodValidationPipe } from '@/validations/zod-validation.pipe';
-import { Body, Get, Headers, Param, Post } from '@nestjs/common';
+import { Body, Get, Param, Post } from '@nestjs/common';
 import { z } from 'zod';
 
 export const CreateUserSchema = z.object({
@@ -26,11 +26,10 @@ export class BaseUsersController {
   @Post('/create')
   @CreateUserDocs()
   async create(
-    @Headers('header') headerValue = 'default-value',
     @Body(new ZodValidationPipe(CreateUserSchema)) body: CreateUserDto,
   ) {
     // TODO: test headerValues
-    return await this.domain.createUser(headerValue, body);
+    return await this.domain.createUser(body);
   }
 
   @Post('/session')

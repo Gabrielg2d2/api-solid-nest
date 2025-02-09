@@ -5,7 +5,6 @@ import { IRepositoryUsers, IRequestCreateUser } from '../interface';
 
 export class RepositoryUserTest implements IRepositoryUsers {
   private static instance: RepositoryUserTest;
-  private headers: string[] = [];
   private users: IUserGlobal[] = [];
 
   private constructor() {}
@@ -47,10 +46,6 @@ export class RepositoryUserTest implements IRepositoryUsers {
     };
   }
   // TODO: Utils test - finish
-
-  async setHeader(header: string) {
-    this.headers.push(header);
-  }
 
   async getUserById(id: string) {
     try {
