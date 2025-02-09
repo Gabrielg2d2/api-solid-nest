@@ -1,5 +1,5 @@
 import { AdapterBcryptjs } from '@/application/@adapters/hash/bcryptjs';
-import { CustomException } from '@/application/@exception/custom-exception';
+import { CustomException } from '@/application/@exception/@root-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidatingAuthenticatedUser {

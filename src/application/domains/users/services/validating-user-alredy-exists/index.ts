@@ -1,4 +1,4 @@
-import { ConflictException } from '@/application/@exception/custom-exception';
+import { ConflictException } from '@/application/@exception/@root-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidationUserAlreadyExists {

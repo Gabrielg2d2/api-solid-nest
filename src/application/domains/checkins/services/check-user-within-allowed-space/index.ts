@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/custom-exception';
+import { CustomException } from '@/application/@exception/@root-exception';
 
 export type ICoordinate = {
   latitude: number;

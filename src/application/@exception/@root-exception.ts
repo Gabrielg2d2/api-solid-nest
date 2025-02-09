@@ -1,4 +1,4 @@
-export class CustomException extends Error {
+export class RootException extends Error {
   private status: number;
 
   constructor(message: string, status: number) {
@@ -8,11 +8,5 @@ export class CustomException extends Error {
 
   public getStatus(): number {
     return this.status;
-  }
-}
-
-export class ConflictException extends CustomException {
-  constructor(message: string) {
-    super(message, 409);
   }
 }

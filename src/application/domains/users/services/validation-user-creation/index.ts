@@ -1,5 +1,5 @@
 import { AdapterZod } from '@/application/@adapters/validation/zod';
-import { CustomException } from '@/application/@exception/custom-exception';
+import { CustomException } from '@/application/@exception/@root-exception';
 
 type IDataRequest = {
   name: string;
