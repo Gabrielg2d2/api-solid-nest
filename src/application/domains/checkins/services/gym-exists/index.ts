@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/custom-exception';
+import { NotFoundException } from '@/application/@exception/custom-exception';
 import { IGymGlobal } from '@/application/@global/types/gym';
 
 interface IServiceGymExists {
@@ -8,7 +8,7 @@ interface IServiceGymExists {
 export class ServiceGymExists implements IServiceGymExists {
   async execute(gym: IGymGlobal | null) {
     if (!gym?.id || !gym?.title || !gym?.latitude || !gym?.longitude) {
-      throw new CustomException('Gym not found', 404);
+      throw new NotFoundException('Gym not found');
     }
 
     return gym;

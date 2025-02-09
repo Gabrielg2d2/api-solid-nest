@@ -22,3 +22,9 @@ export class ForbiddenException extends RootException {
     super(message, 403);
   }
 }
+
+export class NotFoundException extends RootException {
+  constructor(message: string) {
+    super(message, 404);
+  }
+}
