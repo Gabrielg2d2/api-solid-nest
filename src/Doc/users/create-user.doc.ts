@@ -1,21 +1,21 @@
 import {
-  IDataCreateUserRequest,
-  IDataCreateUserResponse,
+  TRequestCreateUser,
+  TResponseCreateUser,
 } from '@/application/domains/users/main';
 import { applyDecorators } from '@nestjs/common';
-import { ApiBody, ApiHeader, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { useGenerateDoc } from '../@functions/useGenerateDoc';
 
-const RequestCreateUser = useGenerateDoc<IDataCreateUserRequest>(
+const RequestCreateUser = useGenerateDoc<TRequestCreateUser>(
   {
     name: 'John Doe',
     email: 'john.doe@example.com',
     password: 'password123',
   },
-  'CreateUserRequest',
+  'TRequestCreateUser',
 );
 
-const ResponseCreateUser = useGenerateDoc<IDataCreateUserResponse>(
+const ResponseCreateUser = useGenerateDoc<TResponseCreateUser>(
   {
     user: {
       id: '1',
@@ -25,17 +25,12 @@ const ResponseCreateUser = useGenerateDoc<IDataCreateUserResponse>(
       created_at: new Date(),
     },
   },
-  'CreateUserResponse',
+  'TResponseCreateUser',
 );
 
 export function CreateUserDocs() {
   return applyDecorators(
-    ApiOperation({ summary: 'Create user' }),
-    ApiHeader({
-      name: 'header',
-      description: 'Description header',
-      required: false,
-    }),
+    ApiOperation({ summary: 'Create user', operationId: 'createUser' }),
     ApiBody({ type: RequestCreateUser }),
     ApiResponse({
       status: 201,

@@ -7,9 +7,9 @@ import {
 } from './use-cases/authenticate-user/main';
 import {
   CreateUserUseCase,
-  IDataRequest as IDataCreateUserRequest,
-  IDataResponse as IDataCreateUserResponse,
   IReturnCreateUserUseCase,
+  TRequestCreateUser,
+  TResponseCreateUser,
 } from './use-cases/create-user/main';
 import {
   GetProfileUseCase,
@@ -21,14 +21,14 @@ import {
 export type {
   IDataAuthenticateRequest,
   IDataAuthenticateResponse,
-  IDataCreateUserRequest,
-  IDataCreateUserResponse,
   IDataGetProfileRequest,
   IDataGetProfileResponse,
+  TRequestCreateUser,
+  TResponseCreateUser,
 };
 
 interface IUsersDomain {
-  createUser(body: IDataCreateUserRequest): IReturnCreateUserUseCase;
+  createUser(body: TRequestCreateUser): IReturnCreateUserUseCase;
   authenticateUser(body: IDataAuthenticateRequest): IReturnAuthenticateUser;
   getProfile(userId: string): IReturnDefaultGetProfile;
 }
@@ -36,7 +36,7 @@ interface IUsersDomain {
 export class UsersDomain implements IUsersDomain {
   constructor(private readonly repository: IRepositoryUsers) {}
 
-  async createUser(body: IDataCreateUserRequest) {
+  async createUser(body: TRequestCreateUser) {
     return await new CreateUserUseCase(this.repository).execute(body);
   }
 

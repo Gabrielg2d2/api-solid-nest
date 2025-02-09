@@ -4,28 +4,32 @@ import { ServiceCreatePasswordHash } from '../../services/create-password-hash';
 import { ServiceValidationUserAlreadyExists } from '../../services/validating-user-alredy-exists';
 import { ServiceValidationCreateUser } from '../../services/validation-user-creation';
 
-type IDataRequest = {
+type TRequestCreateUser = {
   name: string;
   email: string;
   password: string;
 };
 
-type IDataResponse = {
+type TResponseCreateUser = {
   user: IUserGlobal;
 };
 
-type IReturnCreateUserUseCase = Promise<IDataResponse>;
+type IReturnCreateUserUseCase = Promise<TResponseCreateUser>;
 
-export type { IDataRequest, IDataResponse, IReturnCreateUserUseCase };
+export type {
+  IReturnCreateUserUseCase,
+  TRequestCreateUser,
+  TResponseCreateUser,
+};
 
 interface ICreateUserUseCase {
-  execute(body: IDataRequest): Promise<IDataResponse>;
+  execute(body: TRequestCreateUser): Promise<TResponseCreateUser>;
 }
 
 export class CreateUserUseCase implements ICreateUserUseCase {
   constructor(private readonly repository: IRepositoryUsers) {}
 
-  async execute(body: IDataRequest) {
+  async execute(body: TRequestCreateUser) {
     await new ServiceValidationCreateUser().execute(body);
 
     const { name, email, password } = body;
