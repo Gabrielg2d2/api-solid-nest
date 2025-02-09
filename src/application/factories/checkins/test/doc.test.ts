@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/@root-exception';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { CheckInDomain } from '@/application/domains/checkins/main';
 import { UsersDomain } from '@/application/domains/users/main';
 import { beforeEach, describe, expect, test } from 'vitest';

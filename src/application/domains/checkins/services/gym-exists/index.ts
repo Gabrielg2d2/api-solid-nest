@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/@root-exception';
+import { CustomException } from '@/application/@exception/custom-exception';
 import { IGymGlobal } from '@/application/@global/types/gym';
 
 interface IServiceGymExists {

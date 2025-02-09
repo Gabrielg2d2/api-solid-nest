@@ -10,3 +10,9 @@ export class RootException extends Error {
     return this.status;
   }
 }
+
+export class ConflictException extends RootException {
+  constructor(message: string) {
+    super(message, 409);
+  }
+}

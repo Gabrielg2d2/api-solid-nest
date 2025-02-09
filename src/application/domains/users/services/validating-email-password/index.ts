@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/@root-exception';
+import { CustomException } from '@/application/@exception/custom-exception';
 
 interface IServiceValidationEmailPassword {
   execute(email: string, password: string): Promise<void>;

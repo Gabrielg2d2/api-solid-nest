@@ -1,4 +1,4 @@
-import { RootException } from '@/application/@exception/@root-exception';
+import { RootException } from '@/application/@exception/custom-exception';
 import { Presenter } from '@/presenter';
 import {
   ArgumentsHost,

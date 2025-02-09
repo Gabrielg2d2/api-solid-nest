@@ -42,8 +42,8 @@ export function CreateCheckInsDocs() {
       type: ResponseCreateCheckIn,
     }),
     ApiResponse({
-      status: 400,
-      description: 'Check in already done today',
+      status: 409,
+      description: 'Check-in already exists today',
     }),
     ApiResponse({ status: 500, description: 'Internal server error' }),
   );
