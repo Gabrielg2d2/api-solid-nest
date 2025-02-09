@@ -30,11 +30,7 @@ export class BaseGymsController {
     @Body(new ZodValidationPipe(CreateGymSchema)) body: CreateGymDto,
   ) {
     console.log('Header value: ', headerValue);
-    const data = await this.domain.create(body);
-
-    return {
-      gym: data,
-    };
+    return await this.domain.create(body);
   }
 
   @Get('/gyms/:id')
@@ -44,10 +40,6 @@ export class BaseGymsController {
     @Param('id') id: string,
   ) {
     console.log('Header value: ', headerValue);
-    const data = await this.domain.findGym(id);
-
-    return {
-      gym: data,
-    };
+    return await this.domain.findGym(id);
   }
 }

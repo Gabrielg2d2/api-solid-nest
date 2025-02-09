@@ -30,11 +30,7 @@ export class BaseUsersController {
     @Body(new ZodValidationPipe(CreateUserSchema)) body: CreateUserDto,
   ) {
     // TODO: test headerValues
-    const data = await this.domain.createUser(headerValue, body);
-
-    return {
-      user: data,
-    };
+    return await this.domain.createUser(headerValue, body);
   }
 
   @Post('/session')
@@ -43,20 +39,12 @@ export class BaseUsersController {
     @Body(new ZodValidationPipe(AuthenticateUserSchema))
     body: AuthenticateUserDto,
   ) {
-    const data = await this.domain.authenticateUser(body);
-
-    return {
-      user: data,
-    };
+    return await this.domain.authenticateUser(body);
   }
 
   @Get('/profile/:userId')
   @ProfileUserDocs()
   async getProfile(@Param('userId') userId: string) {
-    const data = await this.domain.getProfile(userId);
-
-    return {
-      user: data,
-    };
+    return await this.domain.getProfile(userId);
   }
 }

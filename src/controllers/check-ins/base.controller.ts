@@ -16,20 +16,12 @@ export class BaseCheckInsController {
     @Body() body: IDataRequestCreateCheckIn,
   ) {
     console.log('Header value: ', headerValue);
-    const data = await this.domain.create(body);
-
-    return {
-      checkIn: data,
-    };
+    return await this.domain.create(body);
   }
 
   @Get('/history-check-ins/:userId')
   @HistoryCheckInsDocs()
   async fetchHistoryCheckIns(@Param('userId') userId: string) {
-    const data = await this.domain.fetchHistoryCheckIns(userId);
-
-    return {
-      historyCheckIns: data,
-    };
+    return await this.domain.fetchHistoryCheckIns(userId);
   }
 }
