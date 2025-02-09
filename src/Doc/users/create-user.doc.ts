@@ -39,5 +39,6 @@ export function CreateUserDocs() {
     }),
     ApiResponse({ status: 400, description: 'Bad Request.' }),
     ApiResponse({ status: 409, description: 'User already exists' }),
+    ApiResponse({ status: 500, description: 'Internal Server Error' }),
   );
 }
