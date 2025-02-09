@@ -16,3 +16,9 @@ export class ConflictException extends RootException {
     super(message, 409);
   }
 }
+
+export class ForbiddenException extends RootException {
+  constructor(message: string) {
+    super(message, 403);
+  }
+}
