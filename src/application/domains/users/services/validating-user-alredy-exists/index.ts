@@ -1,4 +1,4 @@
-import { ConflictException } from '@/application/@exception/custom-exception';
+import { ConflictError } from '@/application/@exception/custom-exception';
 import { IUserGlobal } from '@/application/@global/types/user';
 
 interface IServiceValidationUserAlreadyExists {
@@ -10,7 +10,7 @@ export class ServiceValidationUserAlreadyExists
 {
   async execute(user: IUserGlobal | null) {
     if (user) {
-      throw new ConflictException('User already exists');
+      throw new ConflictError('User already exists');
     }
   }
 }

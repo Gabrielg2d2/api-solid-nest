@@ -1,4 +1,4 @@
-import { ForbiddenException } from '@/application/@exception/custom-exception';
+import { ForbiddenError } from '@/application/@exception/custom-exception';
 
 export type ICoordinate = {
   latitude: number;
@@ -48,7 +48,7 @@ export class ServiceCheckUserWithinAllowedSpace
     const MAX_DISTANCE_IN_KILOMETERS = 0.1;
 
     if (distance > MAX_DISTANCE_IN_KILOMETERS) {
-      throw new ForbiddenException('You are not close to the gym');
+      throw new ForbiddenError('You are not close to the gym');
     }
   }
 }

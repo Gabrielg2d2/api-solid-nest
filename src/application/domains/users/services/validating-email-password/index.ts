@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/custom-exception';
+import { BadRequestError } from '@/application/@exception/custom-exception';
 
 interface IServiceValidationEmailPassword {
   execute(email: string, password: string): Promise<void>;
@@ -9,6 +9,6 @@ export class ServiceValidationEmailPassword
 {
   async execute(email: string, password: string) {
     if (!email || !password)
-      throw new CustomException('Email and password are required', 400);
+      throw new BadRequestError('Email and password are required');
   }
 }

@@ -40,3 +40,9 @@ export class ConflictError extends RootError {
     super(message, 409);
   }
 }
+
+export class InvalidContentError extends RootError {
+  constructor(message: string) {
+    super(message, 422);
+  }
+}

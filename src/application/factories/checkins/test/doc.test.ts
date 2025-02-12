@@ -1,4 +1,4 @@
-import { CustomException } from '@/application/@exception/custom-exception';
+import { NotFoundError } from '@/application/@exception/custom-exception';
 import { CheckInDomain } from '@/application/domains/checkins/main';
 import { UsersDomain } from '@/application/domains/users/main';
 import { beforeEach, describe, expect, test } from 'vitest';
@@ -40,7 +40,7 @@ describe('FactoryCheckInsDomainDoc', () => {
       try {
         await sut.create(requestDataInvalid);
       } catch (error) {
-        if (error instanceof CustomException) {
+        if (error instanceof NotFoundError) {
           expect(error.getStatus()).toBe(400);
           expect(error.message).toBe('Gym not found');
         }
