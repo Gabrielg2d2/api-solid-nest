@@ -1,4 +1,4 @@
-export class RootException extends Error {
+export class RootError extends Error {
   private status: number;
 
   constructor(message: string, status: number) {
@@ -11,19 +11,19 @@ export class RootException extends Error {
   }
 }
 
-export class ForbiddenException extends RootException {
+export class ForbiddenException extends RootError {
   constructor(message: string) {
     super(message, 403);
   }
 }
 
-export class NotFoundException extends RootException {
+export class NotFoundException extends RootError {
   constructor(message: string) {
     super(message, 404);
   }
 }
 
-export class ConflictException extends RootException {
+export class ConflictException extends RootError {
   constructor(message: string) {
     super(message, 409);
   }

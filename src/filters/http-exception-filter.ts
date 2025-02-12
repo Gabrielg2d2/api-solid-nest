@@ -1,4 +1,4 @@
-import { RootException } from '@/application/@exception/custom-exception';
+import { RootError } from '@/application/@exception/custom-exception';
 import { Presenter } from '@/presenter';
 import {
   ArgumentsHost,
@@ -19,12 +19,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     const status =
-      exception instanceof RootException
+      exception instanceof RootError
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     const message =
-      exception instanceof RootException
+      exception instanceof RootError
         ? exception.message
         : 'Internal server error';
 
