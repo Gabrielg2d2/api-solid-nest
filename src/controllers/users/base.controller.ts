@@ -28,7 +28,6 @@ export class BaseUsersController {
   async create(
     @Body(new ZodValidationPipe(CreateUserSchema)) body: CreateUserDto,
   ) {
-    // TODO: test headerValues
     return await this.domain.createUser(body);
   }
 
