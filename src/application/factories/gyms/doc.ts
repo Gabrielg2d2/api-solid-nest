@@ -6,4 +6,10 @@ export class FactoryGymsDomainDoc {
     const repositoryGyms = RepositoryGymsTest.getInstance();
     return new GymsDomain(repositoryGyms);
   }
+
+  static createWithClearedRepository() {
+    const repositoryGyms = RepositoryGymsTest.getInstance();
+    repositoryGyms.utilsTest().clear();
+    return new GymsDomain(repositoryGyms);
+  }
 }

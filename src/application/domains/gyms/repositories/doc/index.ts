@@ -1,6 +1,6 @@
 import { IGymGlobal } from '@/application/@global/types/gym';
 import { randomUUID } from 'node:crypto';
-import { IDataRequest, IRepositoryGyms } from '../interface';
+import { IDataRequest, IRepositoryGyms, TLocationGym } from '../interface';
 
 export class RepositoryGymsTest implements IRepositoryGyms {
   private static instance: RepositoryGymsTest;
@@ -56,8 +56,26 @@ export class RepositoryGymsTest implements IRepositoryGyms {
     return gym;
   }
 
-  // TODO: APENAS DOCUMENTAÇÃO - INICIO
-  async getAllGyms() {
-    return this.listGyms;
+  async findByLocation(location: TLocationGym) {
+    const gym = this.listGyms.find(
+      (gym) =>
+        gym.latitude === location.latitude &&
+        gym.longitude === location.longitude,
+    );
+
+    if (!gym) return null;
+
+    return gym;
+  }
+
+  // TODO: Just for test
+  private async clear() {
+    this.listGyms = [];
+  }
+
+  utilsTest() {
+    return {
+      clear: this.clear.bind(this),
+    };
   }
 }

@@ -24,7 +24,7 @@ export function makeSutUsers(type: TSutProps = 'default') {
   };
 }
 
-describe('FactoryUsersDomainDoc', () => {
+describe('Factory Users Domain', () => {
   let sut: UsersDomain;
 
   beforeEach(() => {

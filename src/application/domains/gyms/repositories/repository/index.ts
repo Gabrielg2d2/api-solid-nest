@@ -1,6 +1,6 @@
 import { AdapterPrisma } from '@/application/@adapters/repository/prisma';
 import { IGymGlobal } from '@/application/@global/types/gym';
-import { IDataRequest, IRepositoryGyms } from '../interface';
+import { IDataRequest, IRepositoryGyms, TLocationGym } from '../interface';
 
 export type { IDataRequest, IGymGlobal };
 
@@ -28,6 +28,29 @@ export class RepositoryGyms implements IRepositoryGyms {
   async findById(id: string) {
     const gym = await this.db.prisma.gym.findUnique({
       where: { id },
+    });
+
+    if (!gym) return null;
+
+    return {
+      ...gym,
+      latitude: gym.latitude.toNumber(),
+      longitude: gym.longitude.toNumber(),
+    };
+  }
+
+  async findByLocation(location: TLocationGym) {
+    const gym = await this.db.prisma.gym.findFirst({
+      where: {
+        latitude: {
+          lte: location.latitude + 0.1,
+          gte: location.latitude - 0.1,
+        },
+        longitude: {
+          lte: location.longitude + 0.1,
+          gte: location.longitude - 0.1,
+        },
+      },
     });
 
     if (!gym) return null;
