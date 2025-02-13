@@ -17,7 +17,7 @@ export const AuthenticateUserSchema = z.object({
   password: z.string().min(6),
 });
 
-export const UserIdSchema = z.string();
+export const ProfileUserIdSchema = z.string();
 
 export type CreateUserDto = z.infer<typeof CreateUserSchema>;
 export type AuthenticateUserDto = z.infer<typeof AuthenticateUserSchema>;
@@ -45,7 +45,7 @@ export class BaseUsersController {
   @Get('/profile/:userId')
   @ProfileUserDocs()
   async getProfile(
-    @Param('userId', new ZodValidationPipe(UserIdSchema)) userId: string,
+    @Param('userId', new ZodValidationPipe(ProfileUserIdSchema)) userId: string,
   ) {
     return await this.domain.getProfile(userId);
   }
