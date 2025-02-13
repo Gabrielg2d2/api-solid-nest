@@ -9,24 +9,15 @@ export function useGenerateDoc<T extends object>(type: T, dtoName: string) {
     }
   };
 
-  if (Array.isArray(type)) {
-    const itemType = type.length > 0 ? type[0] : {};
-    const DynamicDto = useGenerateDoc(itemType, dtoName);
-    return [DynamicDto];
-  }
-
   Object.defineProperty(DynamicDto, 'name', { value: dtoName });
 
   Object.keys(type).forEach((key) => {
     let propertyType;
 
     if (Array.isArray(type[key])) {
-      propertyType =
-        type[key].length > 0
-          ? [useGenerateDoc(type[key][0], `${dtoName} => ${key}`)]
-          : Array;
+      propertyType = Array;
     } else if (typeof type[key] === 'object' && type[key] !== null) {
-      propertyType = useGenerateDoc(type[key], `${dtoName} => ${key}`);
+      propertyType = Object;
     } else {
       propertyType = type[key].constructor;
     }
